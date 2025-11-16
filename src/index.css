@@ -1,0 +1,335 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  display: flex;
+  background: #f7f5ff;
+}
+
+/* Sidebar fixa */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid #eee;
+    overflow-y: auto;
+}
+
+/* Logo e título */
+.sidebar-header {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 50px;
+    margin-bottom: 5px;
+}
+
+.sub {
+    font-size: 12px;
+    color: #888;
+}
+
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item-menu {
+  padding: 14px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.item-menu:hover {
+  background: #f3e9ff;
+}
+
+.item-menu.ativo {
+  background: #e8d8ff;
+  color: #6a00ff;
+  font-weight: 600;
+  transform: translateX(6px); /* animação para o lado */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+/* Caixa “Como funciona?” */
+.info-box {
+    background: #f8f2ff;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+/* Perfil */
+.profile-user {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    background: #8a2be2;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+
+
+.profile-user span {
+    font-size: 12px;
+    color: gray;
+}
+
+/* Botão sair */
+.logout {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+
+.content {
+  margin-left: 220px;  /* mesmo tamanho da sidebar */
+  padding: 100px;
+   margin-top: 120px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+nav a {
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #555;
+}
+
+nav a.active,
+nav a:hover {
+  background: #eae4ff;
+  color: #6b3be8;
+}
+
+.box-info {
+  background: #faf7ff;
+  border: 1px solid #eedcff;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.user-box {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #6b3be8;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.email {
+  opacity: 0.6;
+  font-size: 13px;
+}
+
+.btn-logout {
+  margin-top: 10px;
+  padding: 10px 15px;
+  width: 100%;
+  border: none;
+  background: #f5f5f5;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background: #ebebeb;
+}
+
+
+.content {
+  flex: 1;
+  padding: 40px;
+}
+
+.hero {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.hero h1 {
+  font-size: 42px;
+  font-weight: 800;
+}
+
+.highlight {
+  color: #6b3be8;
+}
+
+.hero p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #666;
+}
+
+
+.search-box {
+  margin: 40px auto;
+  padding: 25px;
+  background: white;
+  width: 80%;
+  border-radius: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.field input,
+.field select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+}
+
+.btn-search {
+  padding: 12px 25px;
+  background: #7a42ff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-search:hover {
+  background: #6b3be8;
+}
+/* Seção - Por que escolher */
+.pq {
+  text-align: center;
+  padding: 80px 40px;
+}
+
+.pq h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.pq .subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  width: 240px;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card .icon {
+  width: 48px;
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: #666;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* ANIMAÇÃO FADE AO APARECER */
+.fade-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.fade-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
