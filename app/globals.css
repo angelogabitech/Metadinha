@@ -1,0 +1,28 @@
+/* RESET GLOBAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  display: flex;
+  background: #f7f5ff;
+}
+
+/* SIDEBAR FIXA */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  height: 100%;
+  background: #fff;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.page-content {
+  margin-left: 280px;
+  padding: 40px;
+}
