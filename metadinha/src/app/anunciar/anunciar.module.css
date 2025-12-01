@@ -1,0 +1,439 @@
+.reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+.labelField {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 15px;
+}
+
+.inputField {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.textareaField {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  height: 140px;
+  resize: none;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 300px;
+  background: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #eee;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.logo-img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.logo p {
+  font-size: 12px;
+  color: #777;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.menu a {
+  padding: 14px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-anunciar {
+  margin-top: 20px;
+  padding: 10px;
+  background: #7750ff;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.tip {
+  background: #f2eaff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 70px;
+  font-size: 13px;
+}
+
+.user {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: #7750ff;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.user-info p {
+  font-size: 13px;
+}
+
+.btn-sair {
+  margin-top: 10px;
+  padding: 8px;
+  background: #eee;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.content {
+  flex: 1;
+  padding: 40px 60px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.back-btn {
+  background: #eee;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.title-group h1 {
+  font-size: 28px;
+}
+
+.title-group p {
+  color: #777;
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 340px;
+  margin: 35px 0;
+}
+
+.step {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #555;
+}
+
+.step.active {
+  background: #7750ff;
+  color: #fff;
+}
+
+.line {
+  display: none;
+}
+
+.form-section {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  width: 800px;
+  margin: 0 auto;
+  border: 2px solid #e7e7e7;
+}
+
+.form-section h2 {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 15px;
+}
+
+.formInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.formTextarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  height: 140px;
+  resize: none;
+}
+
+.row {
+  display: flex;
+  gap: 25px;
+  margin-top: 15px;
+}
+
+.col {
+  flex: 1;
+}
+
+.next-btn {
+  margin-top: 25px;
+  background: #7750ff;
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.card {
+  background: #fff;
+  padding: 34px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  border: 2px solid #f0edf6;
+}
+
+.card h2 {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.sub {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* grid 3 col like the screenshot */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+/* each item is a rounded rectangle button */
+.gridItem {
+  text-align: left;
+  padding: 16px 18px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 15px;
+  color: #111;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+}
+
+/* footer buttons (left previous, right primary) */
+.footerBtns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btnSecondary {
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btnPrimary {
+  padding: 10px 18px;
+  background: #7750ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* small responsive tweaks to match screenshot behavior */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .footerBtns {
+    flex-direction: column;
+  }
+}
+
+/* Make step circle style consistent if used above card */
+.step {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #e9defc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.stepsBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 220px;
+  margin: 30px 0 20px;
+}
+
+.stepCircle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.stepCircleActive {
+  background: #7750ff;
+  color: #fff;
+}
+
+.card {
+  background: #fff;
+  padding: 34px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  border: 2px solid #f0edf6;
+  width: 860px;
+  margin: 0 auto;
+}
+
+.sub {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 22px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.gridItem {
+  text-align: left;
+  padding: 16px 18px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 15px;
+  color: #111;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.gridItemSelected {
+  border-color: #7750ff;
+  background: #f7f0ff;
+}
+
+.footerBtns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.btnSecondary {
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btnPrimary {
+  padding: 10px 18px;
+  background: #7750ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
