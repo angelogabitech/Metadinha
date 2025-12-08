@@ -1,0 +1,166 @@
+/* Layout Principal */
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Conteúdo da página */
+.content {
+  flex: 1;
+  padding: 40px 60px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.backBtn {
+  background: #eee;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.titleGroup h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.titleGroup p {
+  color: #777;
+  margin: 0;
+}
+
+/* Steps */
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  margin: 35px 0;
+}
+
+.step {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #555;
+  transition: 0.3s;
+}
+
+.active {
+  background: #7750ff;
+  color: #fff;
+}
+
+.line {
+  width: 120px;
+  height: 4px;
+  background: #ddd;
+  border-radius: 3px;
+}
+
+/* Form */
+.formSection {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  width: 800px;
+  margin: 0 auto;
+  border: 2px solid #e7e7e7;
+}
+
+.formSection h2 {
+  margin-bottom: 20px;
+}
+
+.labelField {
+  display: block;
+  margin: 14px 0 6px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.inputField,
+.textareaField {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.textareaField {
+  height: 140px;
+  resize: none;
+}
+
+.row {
+  display: flex;
+  gap: 25px;
+  margin-top: 12px;
+}
+
+.col {
+  flex: 1;
+}
+
+.nextBtn {
+  display: block;
+  margin: 25px auto 0;
+  background: #7750ff;
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nextBtn:hover {
+  background: #5a36d8;
+}
+
+/* 📱 Resposivo */
+@media (max-width: 900px) {
+  .formSection {
+    width: 100%;
+  }
+
+  .steps {
+    gap: 40px;
+  }
+
+  .line {
+    width: 70px;
+  }
+}
+
+@media (max-width: 650px) {
+  .content {
+    padding: 20px;
+  }
+
+  .steps {
+    gap: 20px;
+  }
+
+  .line {
+    width: 40px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+}
