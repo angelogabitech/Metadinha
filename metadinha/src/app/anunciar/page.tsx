@@ -1,23 +1,42 @@
-import React from "react";
-import styles from "./anunciar.module.css"; 
-import Sidebar from "../components/sidebar"; 
-import Link from "next/link";
+"use client";
 
+import React, { useState } from "react";
+import styles from "./anunciar.module.css";
+import Sidebar from "../components/sidebar";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+export default function Anunciar() {
+  const router = useRouter();
+
+  const [titulo, setTitulo] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [localizacao, setLocalizacao] = useState("");
+  const [endereco, setEndereco] = useState("");
+  const [erro, setErro] = useState("");
+
+  function handleProximo(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    setErro("");
 
   
-export default function Anunciar() {
+    if (!titulo.trim() || !localizacao.trim()) {
+      setErro("Preencha os campos obrigatórios antes de continuar.");
+      return;
+    }
+
+    router.push("/anunciar2");
+  }
+
   return (
-
-
     <div className={styles.container}>
       <Sidebar />
 
-      {/* Main Content */}
       <main className={styles.content}>
         <header className={styles.topbar}>
-             <Link href="/" className={styles.backBtn}>
-          ←
-        </Link>
+          <Link href="/" className={styles.backBtn}>
+            ←
+          </Link>
 
           <div className={styles.titleGroup}>
             <h1>Anunciar propriedade</h1>
@@ -34,46 +53,56 @@ export default function Anunciar() {
           <div className={styles.step}>3</div>
         </div>
 
-        {/* Form */}
         <section className={styles.formSection}>
           <h2>Informações básicas</h2>
 
+          {/* MENSAGEM DE ERRO */}
+          {erro && <p className={styles.errorMsg}>{erro}</p>}
+
           <label className={styles.labelField}>Título do anúncio *</label>
-          <input 
-            type="text" 
-            placeholder="Ex: Quarto aconchegante em Copacabana" 
+          <input
+            type="text"
+            placeholder="Ex: Quarto aconchegante em Copacabana"
             className={styles.inputField}
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
           />
 
           <label className={styles.labelField}>Descrição</label>
-          <textarea 
-            placeholder="Descreva seu espaço, localização e o que torna especial..." 
+          <textarea
+            placeholder="Descreva seu espaço, localização e o que torna especial..."
             className={styles.textareaField}
+            value={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
           />
 
           <div className={styles.row}>
             <div className={styles.col}>
               <label className={styles.labelField}>Localização *</label>
-              <input 
-                type="text" 
-                placeholder="Ex: Rio de Janeiro, RJ" 
+              <input
+                type="text"
+                placeholder="Ex: Rio de Janeiro, RJ"
                 className={styles.inputField}
+                value={localizacao}
+                onChange={(e) => setLocalizacao(e.target.value)}
               />
             </div>
 
             <div className={styles.col}>
               <label className={styles.labelField}>Endereço</label>
-              <input 
-                type="text" 
-                placeholder="Rua, número - Bairro" 
+              <input
+                type="text"
+                placeholder="Rua, número - Bairro"
                 className={styles.inputField}
+                value={endereco}
+                onChange={(e) => setEndereco(e.target.value)}
               />
             </div>
           </div>
 
-     <Link className={styles.nextBtn} href="/anunciar2">
-   Próximo
-  </Link>
+          <button className={styles.nextBtn} onClick={handleProximo}>
+            Próximo
+          </button>
         </section>
       </main>
     </div>

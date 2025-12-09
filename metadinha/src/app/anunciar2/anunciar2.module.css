@@ -202,3 +202,9 @@
     grid-template-columns: 1fr;
   }
 }
+.errorMsg {
+  color: #e63946;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+}

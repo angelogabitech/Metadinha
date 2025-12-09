@@ -77,6 +77,7 @@ export default function QuartoSimples() {
             <select>
               <option>1 pessoa</option>
               <option>2 pessoas</option>
+              <option>3 pessoas</option>
             </select>
             
             <button onClick={() => router.push("/perfil")} className={styles.btnReserva}>

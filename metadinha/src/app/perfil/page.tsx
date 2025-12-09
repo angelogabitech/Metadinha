@@ -361,26 +361,6 @@ export default function Perfil() {
                 <textarea placeholder="Conte um pouco sobre você..."></textarea>
               </div>
 
-              <div className={styles.formGroup}>
-                <label>Idiomas</label>
-                <div className={styles.inputAdd}>
-                  <input type="text" placeholder="Adicionar idioma" />
-                  <button type="button" className={styles.addBtn}>
-                    +
-                  </button>
-                </div>
-              </div>
-
-              <div className={styles.formGroup}>
-                <label>Interesses</label>
-                <div className={styles.inputAdd}>
-                  <input type="text" placeholder="Adicionar interesse" />
-                  <button type="button" className={styles.addBtn}>
-                    +
-                  </button>
-                </div>
-              </div>
-
               <div className={styles.formActions}>
                 <button
                   type="button"

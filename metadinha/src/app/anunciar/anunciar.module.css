@@ -162,3 +162,11 @@
     flex-direction: column;
   }
 }
+
+.errorMsg {
+  color: #e63946;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+}

@@ -73,6 +73,7 @@ export default function QuartoCasal() {
             <label>Número de hóspedes</label>
             <select>
               <option>1 casal</option>
+              <option>2 casais</option>
             </select>
 
               <button onClick={() => router.push("/perfil")} className={styles.btnReserva}>

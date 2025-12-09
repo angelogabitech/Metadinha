@@ -3,8 +3,42 @@
 import Image from "next/image";
 import styles from "./login.module.css";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
+
+  function validarEmail(email: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function handleLogin(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+
+    // limpa mensagens antigas
+    setErro("");
+
+    // valida campos vazios
+    if (!email || !senha) {
+      setErro("Preencha todos os campos.");
+      return;
+    }
+
+    // valida formato de email
+    if (!validarEmail(email)) {
+      setErro("Digite um e-mail válido.");
+      return;
+    }
+
+    // se passar em tudo, redireciona
+    router.push("/");
+  }
+
   return (
     <main className={styles.container}>
       <div className={styles.card}>
@@ -28,16 +62,31 @@ export default function Login() {
           <span>OR</span>
         </div>
 
+        {/* INPUT EMAIL */}
         <input
           type="email"
           placeholder="you@gmail.com"
           className={styles.input}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <input type="password" placeholder="Senha" className={styles.input} />
 
-        <Link href="/" className={styles.signinBtn}>
+        {/* INPUT SENHA */}
+        <input
+          type="password"
+          placeholder="Senha"
+          className={styles.input}
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+        />
+
+        {/* MOSTRA ERRO */}
+        {erro && <p style={{ color: "red", marginBottom: "10px" }}>{erro}</p>}
+
+        {/* BOTÃO ENTRAR */}
+        <button onClick={handleLogin} className={styles.signinBtn}>
           Entrar
-        </Link>
+        </button>
 
         <div className={styles.links}>
           <a href="#">Esqueceu a Senha</a>
