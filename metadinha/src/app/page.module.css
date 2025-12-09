@@ -1,4 +1,4 @@
-/* HERO (seção inicial) */
+
 .hero {
   text-align: center;
   padding: 60px 0;
@@ -19,57 +19,132 @@
   color: #666;
 }
 
-/* CAIXA DE BUSCA */
-.search-box {
+
+.searchBox {
   margin: 40px auto;
   padding: 25px;
-  background: white;
   width: 80%;
-  border-radius: 20px;
+  background: #fff;
+  border-radius: 22px;
   display: flex;
-  gap: 20px;
-  align-items: flex-end;
+  gap: 18px;
+  align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.09);
+  animation: fadeUp 0.9s ease forwards;
+  opacity: 0;
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
+@keyframes fadeUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+.formGroup {
+  position: relative;
   width: 100%;
-  margin-bottom: 16px;
 }
 
-.field label {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.field input,
-.field select {
+.inputFloating {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  padding: 16px 14px 6px;
+  border: 2px solid #ddd;
+  border-radius: 14px;
+  font-size: 15px;
+  background: #fafafa;
   outline: none;
-  appearance: none;
+  transition: 0.3s ease;
 }
 
-/* BOTÃO */
-.btn-search {
-  padding: 12px 25px;
+.inputFloating:focus {
+  border-color: #7a42ff;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(122, 66, 255, 0.15);
+}
+
+.labelFloating {
+  position: absolute;
+  top: 16px;
+  left: 14px;
+  font-size: 15px;
+  color: #666;
+  pointer-events: none;
+  transition: 0.25s ease;
+}
+
+
+.inputFloating:focus + .labelFloating,
+.inputFloating:not(:placeholder-shown) + .labelFloating {
+  top: -8px;
+  left: 10px;
+  font-size: 12px;
+  background: #fff;
+  padding: 0 6px;
+  color: #7a42ff;
+}
+
+
+select.inputFloating {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%236b3be8' height='24' viewBox='0 0 24 24' width='24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.btnSearch {
+  padding: 16px 24px;
   background: #7a42ff;
   color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   cursor: pointer;
   font-weight: 600;
+  font-size: 15px;
+  transition: 0.25s ease-in-out;
+  white-space: nowrap;
 }
 
-.btn-search:hover {
-  background: #6b3be8;
+.btnSearch:hover {
+  background: #5c2fe8;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(122, 66, 255, 0.25);
 }
+
+.revealText {
+  display: inline-block;
+  overflow: hidden;
+  font-size: 42px;
+  font-weight: 800;
+}
+
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealChar 0.45s forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes revealChar {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeSubtitle {
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+  animation-delay: 2.4s;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+
 
 /* POR QUE ESCOLHER */
 .pq {
@@ -89,7 +164,7 @@
   margin-bottom: 40px;
 }
 
-/* CARDS */
+
 .cards {
   display: flex;
   justify-content: center;
@@ -123,7 +198,7 @@
   line-height: 1.4;
 }
 
-/* ANIMAÇÃO */
+
 .fade-item {
   opacity: 0;
   transform: translateY(40px);
@@ -133,4 +208,38 @@
 .fade-item.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.revealText {
+  display: inline-block;
+  overflow: hidden;
+  font-size: 42px;
+  font-weight: 800;
+}
+
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealChar 0.45s forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes revealChar {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeSubtitle {
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+  animation-delay: 2.4s; 
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }

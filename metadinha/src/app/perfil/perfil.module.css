@@ -1,65 +1,60 @@
 /* CONTEÚDO PRINCIPAL */
 .conteudo {
   flex: 1;
-  padding: 40px;
-}
-
-/* TITULO */
-.titulo {
-  font-size: 38px;
-  font-weight: bold;
-  margin: 0;
-}
-
-.sub {
-  color: #000;
-  opacity: 0.35;
-  margin-top: 5px;
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
 /* PROFILE HEADER */
 .profileHeader {
-  width: 95%;
+  width: 120%;
+  max-width: 1150px; /* LARGURA AJUSTADA */
   background: #fff;
-  padding: 30px 40px;
-  border-radius: 20px;
+  padding: 30px 85px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 8px 25px -10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px -10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px;
+  margin-left: 100px;
 }
 
 .profileLeft {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 22px; 
 }
 
 .profileAvatar {
-  width: 90px;
-  height: 90px;
+  width: 95px;
+  height: 95px;
   background: #8a2be2;
   color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
+  font-size: 42px;
   font-weight: bold;
 }
 
-/* INFORMACOES PRINCIPAIS */
+/* INFORMAÇÕES DO PERFIL */
 .profileName {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   margin: 0;
 }
 
 .profileMeta {
-  margin-top: 5px;
+  margin-top: 6px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  padding-top: 5px;
+  padding-bottom: 10px;
 }
 
 .metaItem {
@@ -75,24 +70,18 @@
   margin-right: 6px;
 }
 
-.badge {
-  padding: 4px 12px;
-  font-size: 13px;
-  border-radius: 14px;
-  font-weight: 600;
-}
-
 .usuario {
   background: #efe5ff;
   color: #7a25d8;
 }
 
-/* ESTATISTICAS */
+/* ESTATÍSTICAS */
 .profileStats {
-  margin-top: 8px;
+  margin-top: 7px;
   display: flex;
   align-items: center;
-  gap: 35px;
+  gap: 30px;
+  padding-top: 10px;
 }
 
 .statItem {
@@ -101,24 +90,17 @@
   font-size: 16px;
   color: #333;
 }
-
-.statItem strong {
-  color: #000;
-  margin-right: 4px;
-}
-
-/* BOTAO EDITAR PERFIL */
 .editProfileBtn {
-  padding: 10px 20px;
+  padding: 10px 22px;
   border: 1px solid #d5c7ff;
-  background: #ffffff;
+  background: #fff;
   font-size: 15px;
   border-radius: 10px;
   cursor: pointer;
   transition: 0.2s;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
 }
 
 .editProfileBtn:hover {
@@ -126,66 +108,214 @@
   border-color: #bca8ff;
 }
 
+/* SEÇÃO EDITAR PERFIL */
+.editProfileSection {
+  width: 95%;
+  max-width: 1150px;
+  background: #ffffff;
+  padding: 35px 45px;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px -10px rgba(0,0,0,0.12);
+  margin-top: 25px;
+  margin-left: 240px;
+  animation: fadeIn 0.3s ease;
+}
+
+.sectionTitle {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #2c2c2c;
+}
+
+/* FORM */
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* LINHAS DO FORM */
+.formRow {
+  display: flex;
+  gap: 22px;
+}
+
+.formGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* INPUTS / SELECT / TEXTAREA */
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: 12px 14px;
+  border: 1px solid #dcd3ff;
+  border-radius: 10px;
+  font-size: 15px;
+  background: #faf7ff;
+  outline: none;
+  transition: 0.2s;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: #8a2be2;
+  box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.25);
+}
+
+/* TEXTAREA */
+.formGroup textarea {
+  resize: none;
+  min-height: 110px;
+}
+
+/* CAMPOS COM BOTÃO DE ADICIONAR */
+.inputAdd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inputAdd input {
+  flex: 1;
+}
+
+.addBtn {
+  width: 42px;
+  height: 42px;
+  background: #8a2be2;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.addBtn:hover {
+  background: #7420cc;
+}
+
+/* AÇÕES DO FORM */
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* BOTÃO CANCELAR */
+.cancelBtn {
+  padding: 12px 20px;
+  background: #f4f1ff;
+  border: 1px solid #d0c3ff;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cancelBtn:hover {
+  background: #e9e3ff;
+}
+
+/* BOTÃO SALVAR */
+.saveBtn {
+  padding: 12px 25px;
+  background: #8a2be2;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.saveBtn:hover {
+  background: #7420cc;
+}
+
+/* ANIMAÇÃO */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* TABS */
 .tabsContainer {
   display: flex;
-  width: 100%;
-  background: #f8f6ff;
+  width: 120%;
+  max-width: 1150px;
+  background: #f1ecff;
   border-radius: 10px;
   padding: 4px;
-  margin-bottom: 20px;
-  margin-top: 25px;
+  margin-bottom: 18px;
+  margin-top: 10px;
+  margin-left: 100px;
 }
 
 .tabButton {
   flex: 1;
-  padding: 12px 0;
+  padding: 13px 0;
   background: transparent;
   border: none;
   border-radius: 8px;
   font-size: 16px;
-  font-weight: 500;
   cursor: pointer;
   transition: 0.2s;
-  color: #7a7a7a;
+  color: #6d6d6d;
 }
 
 .tabButton:hover {
-  background: #ede8ff;
+  background: #e9e1ff;
 }
 
 .active {
-  background: #ffffff !important;
+  background: #fff !important;
   color: #000;
   font-weight: 600;
   box-shadow: 0 4px 10px -3px rgba(0, 0, 0, 0.15);
 }
 
-/* ABA DE CONTEÚDO */
+/* ABA */
 .tabContent {
-  background: #ffffff;
-  padding: 30px;
+  width: 120%;
+  max-width: 1150px;
+  background: #fff;
+  padding: 35px;
   border-radius: 12px;
   box-shadow: 0 8px 25px -10px rgba(0, 0, 0, 0.15);
+  margin-left: 100px;
 }
 
-/* EMPTY */
+/* EMPTY STATE */
 .emptyBox {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 0;
+  padding: 70px 0;
 }
 
 .emptyIcon {
-  width: 60px;
+  width: 65px;
   opacity: 0.3;
   margin-bottom: 15px;
 }
 
 .emptyText {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: #444;
 }
@@ -196,99 +326,161 @@
   color: #777;
 }
 
-/* FORM EDITAR PERFIL */
-.editProfileSection {
-  background: #fff;
-  margin-top: 25px;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px -10px rgba(0, 0, 0, 0.15);
-}
+/* Conteudo Minhas Reservas */
 
-.sectionTitle {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 25px;
-}
-
-.editForm {
+.reservaList {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 20px;
 }
 
-/* GRID FORM */
-.formRow {
-  display: flex;
-  gap: 30px;
-  width: 100%;
-}
-
-.formGroup {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.formLabel {
-  font-size: 15px;
-  font-weight: 600;
-  color: #303030;
-}
-
-/* INPUTS */
-.input,
-.select,
-.textarea {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1.3px solid #dcdcdc;
-  font-size: 15px;
-  outline: none;
-  transition: 0.2s;
+.reservaCard {
   background: #ffffff;
-}
-
-.input:focus,
-.select:focus,
-.textarea:focus {
-  border-color: #8A2BE2;
-  box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.15);
-}
-
-/* BOTÕES */
-.formActions {
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid #e5e5e5;
   display: flex;
-  justify-content: flex-end;
-  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.cancelBtn,
-.saveBtn {
-  padding: 10px 25px;
-  border-radius: 10px;
-  cursor: pointer;
+.reservaLeft h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.dataCriacao {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.reservaInfoRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 15px;
+  color: #444;
+}
+
+.reservaRight {
+  text-align: right;
+}
+
+.total {
+  font-size: 16px;
+}
+
+.precoPessoa {
+  color: #777;
+  font-size: 14px;
+}
+
+.statusTag {
+  background: #fceec0;
+  color: #9a6b00;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+/* Conteudo Meus anuncios */ 
+
+.headerLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.newButton {
+  background: #8b46ff;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
   transition: 0.2s;
 }
 
-.cancelBtn {
-  background: transparent;
-  border: 1px solid #b6b6b6;
+.newButton:hover {
+  background: #7a3ae8;
 }
 
-.cancelBtn:hover {
+.anuncioList {
+  margin-top: 20px;
+}
+
+.cardAnuncio {
+  position: relative;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  width: 620px;
+}
+
+.anuncioStatusTag {
+  position: absolute;
+  background: #28c76f;
+  color: white;
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+  top: 15px;
+  left: 15px;
+}
+
+.cardTop {
+  height: 120px;
+  background: #f1e9ff;
+}
+
+.cardInfo {
+  padding: 18px 22px;
+}
+
+.cardInfo h3 {
+  margin: 10px 0 5px;
+}
+
+.cardInfo p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #555;
+  margin-bottom: 3px;
+}
+
+.cardInfo strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.cardInfo strong span {
+  color: #666;
+  font-size: 14px;
+}
+
+.cardActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.viewBtn,
+.editBtn {
   background: #f4f4f4;
-}
-
-.saveBtn {
-  background: #8A2BE2;
   border: none;
-  color: #fff;
-}
-
-.saveBtn:hover {
-  background: #7426c7;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
 }

@@ -1,6 +1,4 @@
-/* ============================= */
-/* SIDEBAR FIXA                  */
-/* ============================= */
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -16,9 +14,7 @@
   overflow-y: auto;
 }
 
-/* ============================= */
-/* LOGO + TÍTULO                 */
-/* ============================= */
+
 .sidebarHeader {
   margin-bottom: 30px;
 }
@@ -35,9 +31,7 @@
   color: #6a00ff;
 }
 
-/* ============================= */
-/* MENU                          */
-/* ============================= */
+
 .menu {
   display: flex;
   flex-direction: column;
@@ -57,7 +51,6 @@
   background: #f1e7ff;
 }
 
-/* Item ativo como na imagem */
 .itemMenuAtivo {
   background: #ead6ff;
   color: #6a00ff;
@@ -68,9 +61,7 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-/* ============================= */
-/* INFO BOX                      */
-/* ============================= */
+
 .infoBox {
   background: #f4e8ff;
   padding: 18px;
@@ -85,9 +76,7 @@
   line-height: 1.3rem;
 }
 
-/* ============================= */
-/* PERFIL                        */
-/* ============================= */
+
 .profileUser {
   display: flex;
   gap: 12px;
@@ -121,16 +110,26 @@
 
 
 .logout {
+  display: block; 
   width: 100%;
-  padding: 12px;
+  padding: 12px 0;
+  text-align: center;
   border-radius: 12px;
-  background: #f4f4f4;
-  border: 1px solid #dcdcdc;
+  background: #ffffff;
+  border: 1px solid #d5c7ff;
   cursor: pointer;
-  transition: 0.25s ease;
+  transition: 0.25s ease-in-out;
   font-size: 16px;
+  color: #5c4ec4;
+  font-weight: 600;
+  text-decoration: none; 
 }
 
 .logout:hover {
-  background: #e8e8e8;
+  background: #f5f0ff;
+  border-color: #b7a5ff;
+}
+
+.logout:active {
+  transform: scale(0.97);
 }

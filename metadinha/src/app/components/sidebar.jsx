@@ -57,9 +57,9 @@ export default function Sidebar() {
       </div>
 
       {/* BOTÃO SAIR */}
-      <button className={styles.logout} onClick={logout}>
+       <Link className={styles.logout} href="/login">
         Sair
-      </button>
+      </Link>
 
     </aside>
   );

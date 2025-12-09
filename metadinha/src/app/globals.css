@@ -1,4 +1,4 @@
-/* RESET GLOBAL */
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +11,7 @@ body {
   background: #f7f5ff;
 }
 
-/* SIDEBAR FIXA */
+
 .sidebar {
   position: fixed;
   left: 0;

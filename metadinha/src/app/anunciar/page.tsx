@@ -1,87 +1,80 @@
-"use client";
+import React from "react";
+import styles from "./anunciar.module.css"; 
+import Sidebar from "../components/sidebar"; 
+import Link from "next/link";
 
-import React, { useState } from "react";
-import styles from "./anunciar.module.css";
-import Step1 from "./../components/anunciar/step1";
-import Step2 from "./../components/anunciar/step2";
-import Step3 from "./../components/anunciar/step3";
-
-export default function Page() {
-  const [stepAtual, setStepAtual] = useState(1);
-  const [formData, setFormData] = useState({
-    titulo: "",
-    descricao: "",
-    localizacao: "",
-    valor: "",
-    comodidades: [] as string[]
-  });
-
-  const atualizarCampo = (campos: Partial<typeof formData>) => {
-    setFormData({ ...formData, ...campos });
-  };
-
-  const podeAvancarStep1 = !!(formData.titulo && formData.descricao);
-  const podeAvancarStep2 = !!(formData.localizacao && formData.valor);
-  const podeEnviarStep3 = formData.comodidades.length > 0;
-
+  
+export default function Anunciar() {
   return (
-    <main className={styles.content}>
-      {/* HEADER SUPERIOR */}
-      <header className={styles.header}>
-        <button className={styles.backBtn} onClick={() => stepAtual > 1 && setStepAtual(stepAtual - 1)}>
+
+
+    <div className={styles.container}>
+      <Sidebar />
+
+      {/* Main Content */}
+      <main className={styles.content}>
+        <header className={styles.topbar}>
+             <Link href="/" className={styles.backBtn}>
           ←
-        </button>
+        </Link>
 
-        <div className={styles.titleGroup}>
-          <h1>Anunciar propriedade</h1>
-          <p>Compartilhe seu espaço com a comunidade Metadinha</p>
+          <div className={styles.titleGroup}>
+            <h1>Anunciar propriedade</h1>
+            <p>Compartilhe seu espaço com a comunidade Metadinha</p>
+          </div>
+        </header>
+
+        {/* Steps */}
+        <div className={styles.steps}>
+          <div className={`${styles.step} ${styles.active}`}>1</div>
+          <div className={styles.line}></div>
+          <div className={styles.step}>2</div>
+          <div className={styles.line}></div>
+          <div className={styles.step}>3</div>
         </div>
-      </header>
 
-      {/* BARRA DE STEPS */}
-      <div className={styles.stepsBar}>
-        <div className={`${styles.stepCircle} ${stepAtual > 1 ? styles.stepCircleActive : ""}`}>
-          {stepAtual > 1 ? "✓" : "1"}
-        </div>
+        {/* Form */}
+        <section className={styles.formSection}>
+          <h2>Informações básicas</h2>
 
-        <div className={`${styles.stepCircle} ${stepAtual > 2 ? styles.stepCircleActive : ""}`}>
-          {stepAtual > 2 ? "✓" : "2"}
-        </div>
+          <label className={styles.labelField}>Título do anúncio *</label>
+          <input 
+            type="text" 
+            placeholder="Ex: Quarto aconchegante em Copacabana" 
+            className={styles.inputField}
+          />
 
-        <div className={`${styles.stepCircle} ${stepAtual === 3 ? styles.stepCircleActive : ""}`}>
-          3
-        </div>
-      </div>
+          <label className={styles.labelField}>Descrição</label>
+          <textarea 
+            placeholder="Descreva seu espaço, localização e o que torna especial..." 
+            className={styles.textareaField}
+          />
 
-      {/* RENDERIZAR STEPS */}
-      {stepAtual === 1 && (
-        <Step1
-          data={formData}
-          change={atualizarCampo}
-          next={() => podeAvancarStep1 && setStepAtual(2)}
-          bloquear={!podeAvancarStep1}
-        />
-      )}
+          <div className={styles.row}>
+            <div className={styles.col}>
+              <label className={styles.labelField}>Localização *</label>
+              <input 
+                type="text" 
+                placeholder="Ex: Rio de Janeiro, RJ" 
+                className={styles.inputField}
+              />
+            </div>
 
-      {stepAtual === 2 && (
-        <Step2
-          data={formData}
-          change={atualizarCampo}
-          back={() => setStepAtual(1)}
-          next={() => podeAvancarStep2 && setStepAtual(3)}
-          bloquear={!podeAvancarStep2}
-        />
-      )}
+            <div className={styles.col}>
+              <label className={styles.labelField}>Endereço</label>
+              <input 
+                type="text" 
+                placeholder="Rua, número - Bairro" 
+                className={styles.inputField}
+              />
+            </div>
+          </div>
 
-      {stepAtual === 3 && (
-        <Step3
-          data={formData}
-          change={atualizarCampo}
-          back={() => setStepAtual(2)}
-          submit={() => podeEnviarStep3 && alert("Anúncio criado com sucesso!")}
-          bloquear={!podeEnviarStep3}
-        />
-      )}
-    </main>
+     <Link className={styles.nextBtn} href="/anunciar2">
+   Próximo
+  </Link>
+        </section>
+      </main>
+    </div>
   );
 }
