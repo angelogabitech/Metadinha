@@ -1,4 +1,4 @@
-/* CONTEÚDO PRINCIPAL */
+
 .conteudo {
   flex: 1;
   padding: 20px 40px;
@@ -7,10 +7,10 @@
   align-items: center; 
 }
 
-/* PROFILE HEADER */
+
 .profileHeader {
   width: 120%;
-  max-width: 1150px; /* LARGURA AJUSTADA */
+  max-width: 1150px; 
   background: #fff;
   padding: 30px 85px;
   border-radius: 10px;
@@ -41,7 +41,7 @@
   font-weight: bold;
 }
 
-/* INFORMAÇÕES DO PERFIL */
+
 .profileName {
   font-size: 30px;
   font-weight: 700;
@@ -75,7 +75,6 @@
   color: #7a25d8;
 }
 
-/* ESTATÍSTICAS */
 .profileStats {
   margin-top: 7px;
   display: flex;
@@ -108,7 +107,6 @@
   border-color: #bca8ff;
 }
 
-/* SEÇÃO EDITAR PERFIL */
 .editProfileSection {
   width: 95%;
   max-width: 1150px;
@@ -128,14 +126,13 @@
   color: #2c2c2c;
 }
 
-/* FORM */
+
 .editForm {
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
 
-/* LINHAS DO FORM */
 .formRow {
   display: flex;
   gap: 22px;
@@ -154,7 +151,6 @@
   color: #444;
 }
 
-/* INPUTS / SELECT / TEXTAREA */
 .formGroup input,
 .formGroup select,
 .formGroup textarea {
@@ -174,13 +170,12 @@
   box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.25);
 }
 
-/* TEXTAREA */
+
 .formGroup textarea {
   resize: none;
   min-height: 110px;
 }
 
-/* CAMPOS COM BOTÃO DE ADICIONAR */
 .inputAdd {
   display: flex;
   align-items: center;
@@ -207,7 +202,7 @@
   background: #7420cc;
 }
 
-/* AÇÕES DO FORM */
+
 .formActions {
   display: flex;
   justify-content: flex-end;
@@ -215,7 +210,7 @@
   margin-top: 10px;
 }
 
-/* BOTÃO CANCELAR */
+
 .cancelBtn {
   padding: 12px 20px;
   background: #f4f1ff;
@@ -230,7 +225,7 @@
   background: #e9e3ff;
 }
 
-/* BOTÃO SALVAR */
+
 .saveBtn {
   padding: 12px 25px;
   background: #8a2be2;
@@ -246,13 +241,12 @@
   background: #7420cc;
 }
 
-/* ANIMAÇÃO */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* TABS */
+
 .tabsContainer {
   display: flex;
   width: 120%;
@@ -288,7 +282,7 @@
   box-shadow: 0 4px 10px -3px rgba(0, 0, 0, 0.15);
 }
 
-/* ABA */
+
 .tabContent {
   width: 120%;
   max-width: 1150px;
@@ -299,7 +293,6 @@
   margin-left: 100px;
 }
 
-/* EMPTY STATE */
 .emptyBox {
   display: flex;
   flex-direction: column;
@@ -326,7 +319,6 @@
   color: #777;
 }
 
-/* Conteudo Minhas Reservas */
 
 .reservaList {
   margin-top: 20px;
@@ -387,7 +379,6 @@
   display: inline-block;
 }
 
-/* Conteudo Meus anuncios */ 
 
 .headerLine {
   display: flex;

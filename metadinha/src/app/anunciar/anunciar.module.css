@@ -1,11 +1,9 @@
-/* Layout Principal */
 .container {
   display: flex;
   width: 100%;
   min-height: 100vh;
 }
 
-/* Conteúdo da página */
 .content {
   flex: 1;
   padding: 40px 60px;
@@ -35,7 +33,7 @@
   margin: 0;
 }
 
-/* Steps */
+
 .steps {
   display: flex;
   align-items: center;
@@ -69,7 +67,7 @@
   border-radius: 3px;
 }
 
-/* Form */
+
 .formSection {
   background: #fff;
   padding: 30px;
@@ -132,7 +130,7 @@
   background: #5a36d8;
 }
 
-/* 📱 Resposivo */
+
 @media (max-width: 900px) {
   .formSection {
     width: 100%;

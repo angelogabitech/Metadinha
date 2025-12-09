@@ -1,17 +1,17 @@
-/* Layout Principal */
+
 .container {
   display: flex;
   width: 100%;
   min-height: 100vh;
 }
 
-/* Conteúdo da página */
+
 .content {
   flex: 1;
   padding: 40px 60px;
 }
 
-/* Top Bar */
+
 .topbar {
   display: flex;
   align-items: center;
@@ -27,7 +27,7 @@
   font-size: 22px;
 }
 
-/* Títulos */
+
 .title {
   font-size: 32px;
   font-weight: 700;
@@ -40,7 +40,7 @@
   font-size: 17px;
 }
 
-/* Steps */
+
 .steps {
   display: flex;
   align-items: center;
@@ -62,19 +62,17 @@
   transition: 0.3s;
 }
 
-/* Step completo */
 .done {
   background: #7c4dff;
   color: #fff;
 }
 
-/* Step atual */
 .active {
   background: #9b6dff;
   color: #fff;
 }
 
-/* Card (form container) */
+
 .card {
   background: #fff;
   padding: 30px;
@@ -91,7 +89,7 @@
   font-weight: 700;
 }
 
-/* -------- CAMPOS BONITOS -------- */
+
 
 .formGroup {
   display: flex;
@@ -105,7 +103,6 @@
   color: #4a3f73;
 }
 
-/* INPUT */
 .formInput {
   padding: 12px 14px;
   border-radius: 10px;
@@ -121,7 +118,6 @@
   box-shadow: 0 0 0 3px rgba(106, 0, 255, 0.15);
 }
 
-/* SELECT BONITO */
 .formSelect {
   padding: 12px 14px;
   border-radius: 10px;
@@ -132,7 +128,7 @@
   appearance: none;
   transition: 0.2s;
 
-  /* seta personalizada */
+ 
   background-image: url("data:image/svg+xml;utf8,<svg fill='%236a00ff' height='24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
   background-position: right 12px center;
   background-repeat: no-repeat;
@@ -143,7 +139,7 @@
   box-shadow: 0 0 0 3px rgba(106,0,255,0.15);
 }
 
-/* Grid de inputs */
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -151,7 +147,7 @@
   margin-top: 12px;
 }
 
-/* Botões */
+
 .buttons {
   display: flex;
   justify-content: space-between;
@@ -182,7 +178,7 @@
   background: #5a36d8;
 }
 
-/* 📱 Responsivo */
+
 @media (max-width: 900px) {
   .card {
     width: 100%;
