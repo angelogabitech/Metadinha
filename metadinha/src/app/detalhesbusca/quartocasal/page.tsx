@@ -3,6 +3,7 @@ import styles from "./quartocasal.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/app/components/sidebar";
+import Link from "next/link";
 
 export default function QuartoCasal() {
   const router = useRouter();
@@ -74,7 +75,10 @@ export default function QuartoCasal() {
               <option>1 casal</option>
             </select>
 
-            <button className={styles.btnReserva}>Reservar agora</button>
+              <button onClick={() => router.push("/perfil")} className={styles.btnReserva}>
+              Reservar agora
+              </button>
+
           </aside>
         </section>
       </main>

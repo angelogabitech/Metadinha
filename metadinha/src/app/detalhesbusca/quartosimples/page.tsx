@@ -3,6 +3,8 @@ import styles from "./quartosimples.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/app/components/sidebar";
+import Link from "next/link";
+
 
 export default function QuartoSimples() {
   const router = useRouter();
@@ -15,6 +17,7 @@ export default function QuartoSimples() {
         <button onClick={() => router.back()} className={styles.backBtn}>
           ← Voltar
         </button>
+        
 
         <div className={styles.header}>
           <div>
@@ -59,7 +62,7 @@ export default function QuartoSimples() {
             </p>
           </div>
 
-          {/* CARD DE RESERVA FIXO */}
+         
           <aside className={styles.cardReserva}>
             <strong className={styles.preco}>R$ 120</strong>
             <span className={styles.pessoa}>por pessoa / noite</span>
@@ -75,8 +78,12 @@ export default function QuartoSimples() {
               <option>1 pessoa</option>
               <option>2 pessoas</option>
             </select>
+            
+            <button onClick={() => router.push("/perfil")} className={styles.btnReserva}>
+         Reservar agora
+        </button>
+            
 
-            <button className={styles.btnReserva}>Reservar agora</button>
           </aside>
         </section>
       </main>

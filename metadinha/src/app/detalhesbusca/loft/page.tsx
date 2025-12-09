@@ -3,6 +3,7 @@ import styles from "./loft.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/app/components/sidebar";
+import Link from "next/link";
 
 export default function Loft() {
   const router = useRouter();
@@ -74,7 +75,11 @@ export default function Loft() {
               <option>3 pessoas</option>
             </select>
 
-            <button className={styles.btnReserva}>Reservar agora</button>
+            <button onClick={() => router.push("/perfil")} className={styles.btnReserva}>
+              Reservar agora
+              </button>
+          
+
           </aside>
         </section>
       </main>

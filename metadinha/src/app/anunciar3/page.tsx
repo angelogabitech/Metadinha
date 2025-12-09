@@ -37,7 +37,7 @@ export default function Anunciar3() {
       <Sidebar />
 
       <div className={styles.content}>
-        {/* BACK BUTTON */}
+    
         <Link href="/anunciar2" className={styles.backButton}>
           ←
         </Link>
