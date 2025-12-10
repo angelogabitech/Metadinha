@@ -44,7 +44,6 @@ export default function Sidebar() {
         </p>
       </div>
 
-      {/* PERFIL */}
       <div className={styles.profileUser}>
         <div className={styles.avatar}>S</div>
         <div>
@@ -53,7 +52,6 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* BOTÃO SAIR */}
       <Link className={styles.logout} href="/login">
         Sair
       </Link>

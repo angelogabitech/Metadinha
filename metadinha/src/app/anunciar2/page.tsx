@@ -66,7 +66,6 @@ export default function Anunciar() {
         <div className={styles.card}>
           <h2 className={styles.cardTitle}>Detalhes da propriedade</h2>
 
-          {/* MENSAGEM DE ERRO */}
           {erro && <p className={styles.errorMsg}>{erro}</p>}
 
           <div className={styles.grid}>

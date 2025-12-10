@@ -70,7 +70,7 @@ export default function Perfil() {
       <Sidebar />
 
       <main className={styles.conteudo}>
-        {/* PERFIL */}
+
         {!isEditing && (
           <div className={styles.profileHeader}>
             <div className={styles.profileLeft}>
@@ -334,7 +334,6 @@ export default function Perfil() {
           </>
         )}
 
-        {/* EDITAR PERFIL */}
         {isEditing && (
           <section className={styles.editProfileSection}>
             <h2 className={styles.sectionTitle}>Editar Perfil</h2>

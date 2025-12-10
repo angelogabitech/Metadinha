@@ -15,13 +15,13 @@ export default function BuscarPage() {
 
   return (
     <div className={styles.container}>
-      {/* SIDEBAR */}
+      
       <Sidebar />
       <main className={styles.conteudo}>
         <h1>Encontre seu quarto ideal</h1>
         <p className={styles.sub}>3 opções encontradas</p>
 
-        {/* BARRA DE PESQUISA */}
+        
         <div className={styles.barraPesquisa}>
           <input
             type="text"
@@ -29,7 +29,7 @@ export default function BuscarPage() {
           />
         </div>
 
-        {/* FILTROS */}
+        
         <div className={styles.filtros}>
           <select>
             <option>Todos os tipos</option>
@@ -56,9 +56,9 @@ export default function BuscarPage() {
           </select>
         </div>
 
-        {/* CARDS */}
+        
         <div className={styles.gridCards}>
-          {/* CARD 1 */}
+          
           <div className={styles.card}>
             <span className={styles.tag}>Hostel</span>
 
@@ -80,7 +80,7 @@ export default function BuscarPage() {
             </button>
           </div>
 
-          {/* CARD 2 */}
+          
           <div className={styles.card}>
             <span className={styles.tag}>Hotel</span>
 
@@ -102,7 +102,7 @@ export default function BuscarPage() {
             </button>
           </div>
 
-          {/* CARD 3 */}
+          
           <div className={styles.card}>
             <span className={styles.tag}>Apartamento</span>
 

@@ -75,7 +75,7 @@ export default function QuartoSimples() {
 
   return (
     <div className={styles.container}>
-      {/* SIDEBAR */}
+
       <Sidebar />
 
       <main className={styles.container}>
@@ -90,9 +90,8 @@ export default function QuartoSimples() {
           </div>
         </div>
 
-        {/* GRID PRINCIPAL */}
         <section className={styles.layout}>
-          {/* COLUNA DA ESQUERDA */}
+
           <div className={styles.colEsq}>
             <div className={styles.imageWrapper}>
               <Image
@@ -126,7 +125,6 @@ export default function QuartoSimples() {
             </p>
           </div>
 
-          {/* CARD RESERVA FIXO */}
           <aside className={styles.cardReserva}>
             <strong className={styles.preco}>R$ 120</strong>
             <span className={styles.pessoa}>por pessoa / noite</span>

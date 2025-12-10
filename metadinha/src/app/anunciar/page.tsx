@@ -54,7 +54,6 @@ export default function Anunciar() {
           </div>
         </header>
 
-        {/* Steps */}
         <div className={styles.steps}>
           <div className={`${styles.step} ${styles.active}`}>1</div>
           <div className={styles.line}></div>
@@ -66,7 +65,6 @@ export default function Anunciar() {
         <section className={styles.formSection}>
           <h2>Informações básicas</h2>
 
-          {/* MENSAGEM DE ERRO */}
           {erro && <p className={styles.errorMsg}>{erro}</p>}
 
           <label className={styles.labelField}>Título do anúncio *</label>
