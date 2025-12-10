@@ -15,15 +15,25 @@ export default function Anunciar() {
   const [endereco, setEndereco] = useState("");
   const [erro, setErro] = useState("");
 
+  function salvarParcial(dados: any) {
+    localStorage.setItem("anuncio_temp", JSON.stringify(dados));
+  }
+
   function handleProximo(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     setErro("");
 
-  
     if (!titulo.trim() || !localizacao.trim()) {
       setErro("Preencha os campos obrigatórios antes de continuar.");
       return;
     }
+
+    salvarParcial({
+      titulo,
+      descricao,
+      cidade: localizacao,
+      endereco,
+    });
 
     router.push("/anunciar2");
   }

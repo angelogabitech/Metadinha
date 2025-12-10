@@ -475,3 +475,20 @@
   border-radius: 6px;
   cursor: pointer;
 }
+
+.cancelReservaBtn,
+.cancelAnuncioBtn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #f97373;
+  background: #fff5f5;
+  color: #b91c1c;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.cancelReservaBtn:hover,
+.cancelAnuncioBtn:hover {
+  background: #fee2e2;
+}

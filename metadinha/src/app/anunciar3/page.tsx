@@ -19,7 +19,9 @@ export default function Anunciar3() {
 
   function toggle(item: string) {
     setSelecionadas((prev) =>
-      prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
+      prev.includes(item)
+        ? prev.filter((i) => i !== item)
+        : [...prev, item]
     );
   }
 
@@ -31,19 +33,27 @@ export default function Anunciar3() {
       return;
     }
 
-    const step1 = JSON.parse(localStorage.getItem("anuncio_step1") || "{}");
-    const step2 = JSON.parse(localStorage.getItem("anuncio_step2") || "{}");
+    const anuncioTemp = JSON.parse(
+      localStorage.getItem("anuncio_temp") || "{}"
+    );
 
     const anuncioFinal = {
-      ...step1,
-      ...step2,
+      id: "an_" + Math.random().toString(36).substring(2, 9),
+      ...anuncioTemp,
       comodidades: selecionadas,
-      criadoEm: new Date().toISOString(),
+      status: "Ativo",
+      criadoEm: new Date().toLocaleDateString("pt-BR"),
     };
 
-    localStorage.setItem("novo_anuncio", JSON.stringify(anuncioFinal));
+    const anunciosSalvos = JSON.parse(
+      localStorage.getItem("anuncios") || "[]"
+    );
 
-    alert("Anúncio criado com sucesso!");
+    anunciosSalvos.push(anuncioFinal);
+    localStorage.setItem("anuncios", JSON.stringify(anunciosSalvos));
+
+    localStorage.removeItem("anuncio_temp");
+
     router.push("/perfil");
   }
 
@@ -55,7 +65,9 @@ export default function Anunciar3() {
         <Link href="/anunciar2" className={styles.backButton}>←</Link>
 
         <h1 className={styles.title}>Anunciar propriedade</h1>
-        <p className={styles.sub}>Compartilhe seu espaço com a comunidade Metadinha</p>
+        <p className={styles.sub}>
+          Compartilhe seu espaço com a comunidade Metadinha
+        </p>
 
         <div className={styles.steps}>
           <div className={`${styles.step} ${styles.done}`}>✓</div>
@@ -85,7 +97,10 @@ export default function Anunciar3() {
           </div>
 
           <div className={styles.buttons}>
-            <Link href="/anunciar2" className={styles.btnSecondary}>Anterior</Link>
+            <Link href="/anunciar2" className={styles.btnSecondary}>
+              Anterior
+            </Link>
+
             <button className={styles.btnPrimary} onClick={finalizar}>
               Criar anúncio
             </button>

@@ -20,22 +20,21 @@ export default function Login() {
   function handleLogin(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
 
-    // limpa mensagens antigas
+    
     setErro("");
 
-    // valida campos vazios
+    
     if (!email || !senha) {
       setErro("Preencha todos os campos.");
       return;
     }
 
-    // valida formato de email
+    
     if (!validarEmail(email)) {
       setErro("Digite um e-mail válido.");
       return;
     }
 
-    // se passar em tudo, redireciona
     router.push("/");
   }
 
@@ -62,7 +61,7 @@ export default function Login() {
           <span>OR</span>
         </div>
 
-        {/* INPUT EMAIL */}
+        
         <input
           type="email"
           placeholder="you@gmail.com"
@@ -71,7 +70,7 @@ export default function Login() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        {/* INPUT SENHA */}
+        
         <input
           type="password"
           placeholder="Senha"
@@ -80,16 +79,15 @@ export default function Login() {
           onChange={(e) => setSenha(e.target.value)}
         />
 
-        {/* MOSTRA ERRO */}
+        
         {erro && <p style={{ color: "red", marginBottom: "10px" }}>{erro}</p>}
 
-        {/* BOTÃO ENTRAR */}
+        
         <button onClick={handleLogin} className={styles.signinBtn}>
           Entrar
         </button>
 
         <div className={styles.links}>
-          <a href="#">Esqueceu a Senha</a>
           <a href="/cadastro">Cadastre-se</a>
         </div>
       </div>

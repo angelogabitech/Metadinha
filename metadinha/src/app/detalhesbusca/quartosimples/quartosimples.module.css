@@ -29,7 +29,7 @@
   margin-top: 5px;
 }
 
-/* GRID PRINCIPAL */
+
 .layout {
   display: grid;
   grid-template-columns: 2.2fr 1fr;
@@ -37,7 +37,7 @@
   position: relative;
 }
 
-/* ESQUERDA */
+
 .colEsq {
   display: flex;
   flex-direction: column;
@@ -76,9 +76,9 @@
   color: #555;
 }
 
-/* CARD DE RESERVA FIXO */
+
 .cardReserva {
-  position: sticky; /* FIXO NA LATERAL */
+  position: sticky; 
   top: 40px;
   background: #fff;
   border: 1px solid #eee;
@@ -123,4 +123,39 @@
 
 .btnReserva:hover {
   background: #7627e5;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 40px;
+}
+
+.btnReserva:disabled {
+  background: #bbb;
+  cursor: not-allowed;
+}
+
+.cardReserva input,
+.cardReserva select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.btnReserva {
+  width: 100%;
+  background: #6a2cd3;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btnReserva:hover {
+  background: #5721b9;
 }

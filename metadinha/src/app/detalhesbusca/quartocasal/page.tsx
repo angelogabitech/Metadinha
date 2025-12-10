@@ -3,15 +3,81 @@ import styles from "./quartocasal.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/app/components/sidebar";
-import Link from "next/link";
+import { useState } from "react";
 
 export default function QuartoCasal() {
   const router = useRouter();
+
+  const [loading, setLoading] = useState(false);
+  const [checkin, setCheckin] = useState("");
+  const [checkout, setCheckout] = useState("");
+  const [hospedes, setHospedes] = useState(2); // casal = 2 pessoas
+
+  function gerarId() {
+    return "res_" + Math.random().toString(36).substring(2, 10);
+  }
+
+  function calcularNoites(checkin: string, checkout: string) {
+    if (!checkin || !checkout) return 0;
+
+    const inicio = new Date(checkin);
+    const fim = new Date(checkout);
+
+    const diffTime = fim.getTime() - inicio.getTime();
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+    return Math.max(diffDays, 0);
+  }
+
+  function reservar() {
+    setLoading(true);
+    
+    if (!checkin || !checkout) {
+      alert("Selecione as datas.");
+      setLoading(false);
+      return;
+    }
+
+    const noites = calcularNoites(checkin, checkout);
+
+    if (noites <= 0) {
+      alert("Check-out deve ser após o check-in.");
+      setLoading(false);
+      return;
+    }
+
+    const precoPessoa = 75;
+    const total = noites * hospedes * precoPessoa;
+
+    const novaReserva = {
+      id: gerarId(),
+      criadoEm: new Date().toLocaleDateString("pt-BR"),
+      checkin,
+      checkout,
+      pessoas: hospedes,
+      precoPessoa,
+      total,
+      status: "Confirmada",
+    };
+
+    setTimeout(() => {
+      const reservasSalvas = JSON.parse(
+        localStorage.getItem("reservas") || "[]"
+      );
+
+      reservasSalvas.push(novaReserva);
+      localStorage.setItem("reservas", JSON.stringify(reservasSalvas));
+
+      setLoading(false);
+      router.push("/perfil");
+    }, 1200);
+  }
 
   return (
     <div className={styles.container}>
       {/* SIDEBAR */}
       <Sidebar />
+
       <main className={styles.container}>
         <button onClick={() => router.back()} className={styles.backBtn}>
           ← Voltar
@@ -65,21 +131,35 @@ export default function QuartoCasal() {
             <span className={styles.pessoa}>por noite</span>
 
             <label>Check-in</label>
-            <input type="date" />
+            <input
+              type="date"
+              value={checkin}
+              onChange={(e) => setCheckin(e.target.value)}
+            />
 
             <label>Check-out</label>
-            <input type="date" />
+            <input
+              type="date"
+              value={checkout}
+              onChange={(e) => setCheckout(e.target.value)}
+            />
 
             <label>Número de hóspedes</label>
-            <select>
-              <option>1 casal</option>
-              <option>2 casais</option>
+            <select
+              value={hospedes}
+              onChange={(e) => setHospedes(Number(e.target.value))}
+            >
+              <option value={2}>1 casal</option>
+              <option value={4}>2 casais</option>
             </select>
 
-              <button onClick={() => router.push("/perfil")} className={styles.btnReserva}>
-              Reservar agora
-              </button>
-
+            <button
+              onClick={reservar}
+              className={styles.btnReserva}
+              disabled={loading}
+            >
+              {loading ? "Reservando..." : "Reservar agora"}
+            </button>
           </aside>
         </section>
       </main>

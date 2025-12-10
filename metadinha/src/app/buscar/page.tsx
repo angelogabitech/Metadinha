@@ -95,7 +95,7 @@ export default function BuscarPage() {
 
             <h3>Quarto casal</h3>
             <p>Caruaru, PE</p>
-            <strong>R$ 120</strong>
+            <strong>R$ 150</strong>
 
             <button className={styles.btnRoxo} onClick={() => router.push("/detalhesbusca/quartocasal")}>
               Ver detalhes

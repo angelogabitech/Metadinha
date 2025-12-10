@@ -15,6 +15,17 @@ export default function Anunciar() {
   const [preco, setPreco] = useState("");
   const [erro, setErro] = useState("");
 
+  function salvarEtapa2(dados: any) {
+    const parcial = JSON.parse(localStorage.getItem("anuncio_temp") || "{}");
+
+    const atualizado = {
+      ...parcial,
+      ...dados,
+    };
+
+    localStorage.setItem("anuncio_temp", JSON.stringify(atualizado));
+  }
+
   function handleProximo() {
     setErro("");
 
@@ -22,6 +33,13 @@ export default function Anunciar() {
       setErro("Preencha todos os campos obrigatórios antes de continuar.");
       return;
     }
+
+    salvarEtapa2({
+      tipo,
+      quarto,
+      pessoas: capacidade,
+      preco: Number(preco),
+    });
 
     router.push("/anunciar3");
   }

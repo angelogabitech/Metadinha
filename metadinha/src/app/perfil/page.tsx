@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "../components/sidebar";
 import styles from "./perfil.module.css";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import Link from "next/link";
 export default function Perfil() {
   const [activeTab, setActiveTab] = useState("reservas");
   const [isEditing, setIsEditing] = useState(false);
+
   const mockReservas = [
     {
       id: "69349c5c",
@@ -20,28 +21,56 @@ export default function Perfil() {
       status: "Pendente",
     },
   ];
-  const [reservas, setReservas] = useState(mockReservas);
-  const [anuncios, setAnuncios] = useState([
-    {
-      id: "1",
-      titulo: "Quarto Simples",
-      cidade: "Caruaru",
-      estado: "Pernambuco",
-      tipo: "Hotel",
-      pessoas: 8,
-      preco: 120,
-      status: "Ativo",
-    },
-  ]);
+
+  const [reservas, setReservas] = useState<any[]>([]);
+
+  const [anuncios, setAnuncios] = useState<any[]>([]);
+
+  useEffect(() => {
+    const dados = localStorage.getItem("anuncios");
+    if (dados) {
+      setAnuncios(JSON.parse(dados));
+    }
+  }, []);
+
+  useEffect(() => {
+    const dados = localStorage.getItem("reservas");
+
+    if (dados) {
+      setReservas(JSON.parse(dados));
+    } else {
+      setReservas(mockReservas);
+    }
+  }, []);
+
+  function cancelarReserva(id: string) {
+    setReservas((prev) => {
+      const atualizadas = prev.map((r) =>
+        r.id === id ? { ...r, status: "Cancelada" } : r
+      );
+
+      localStorage.setItem("reservas", JSON.stringify(atualizadas));
+      return atualizadas;
+    });
+  }
+
+  function cancelarAnuncio(id: string) {
+    setAnuncios((prev) => {
+      const atualizados = prev.map((a) =>
+        a.id === id ? { ...a, status: "Inativo" } : a
+      );
+
+      localStorage.setItem("anuncios", JSON.stringify(atualizados));
+      return atualizados;
+    });
+  }
 
   return (
     <div className={styles.container}>
-      {/* SIDEBAR */}
       <Sidebar />
 
-      {/* CONTEÚDO */}
       <main className={styles.conteudo}>
-        {/*  PERFIL */}
+        {/* PERFIL */}
         {!isEditing && (
           <div className={styles.profileHeader}>
             <div className={styles.profileLeft}>
@@ -105,7 +134,6 @@ export default function Perfil() {
           </div>
         )}
 
-        {/* NAV ABAS */}
         {!isEditing && (
           <div className={styles.tabsContainer}>
             <button
@@ -137,12 +165,12 @@ export default function Perfil() {
           </div>
         )}
 
-        {/* CONTEÚDO DAS ABAS */}
         {!isEditing && (
           <>
             {activeTab === "reservas" && (
               <div className={styles.tabContent}>
                 <h2>Minhas Reservas</h2>
+
                 {reservas.length === 0 ? (
                   <div className={styles.emptyBox}>
                     <Image
@@ -195,14 +223,22 @@ export default function Perfil() {
                           <p className={styles.total}>
                             Total:{" "}
                             <strong>
-                              R$ {r.total.toLocaleString("pt-BR")}
+                              R$ {(r.total ?? 0).toLocaleString("pt-BR")}
                             </strong>
                           </p>
                           <p className={styles.precoPessoa}>
-                            (R$ {r.precoPessoa.toFixed(2)}/pessoa)
+                            (R$ {(r.precoPessoa ?? 0).toFixed(2)}/pessoa)
                           </p>
 
                           <span className={styles.statusTag}>{r.status}</span>
+                          {r.status !== "Cancelada" && (
+                            <button
+                              className={styles.cancelReservaBtn}
+                              onClick={() => cancelarReserva(r.id)}
+                            >
+                              Cancelar reserva
+                            </button>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -213,7 +249,6 @@ export default function Perfil() {
 
             {activeTab === "anuncios" && (
               <div className={styles.tabContent}>
-                {/* Cabeçalho com botão */}
                 <div className={styles.headerLine}>
                   <h2>Meus Anúncios</h2>
 
@@ -222,9 +257,8 @@ export default function Perfil() {
                   </Link>
                 </div>
 
-                {/* LISTA DE ANÚNCIOS */}
                 <div className={styles.anuncioList}>
-                  {anuncios.length === 0 && (
+                  {anuncios.length === 0 ? (
                     <div className={styles.emptyBox}>
                       <Image
                         src="/casa.jpg"
@@ -240,67 +274,38 @@ export default function Perfil() {
                         Publique um imóvel para começar!
                       </p>
                     </div>
-                  )}
+                  ) : (
+                    anuncios.map((a) => (
+                      <div key={a.id} className={styles.cardAnuncio}>
+                        <span className={styles.anuncioStatusTag}>
+                          {a.status}
+                        </span>
 
-                  {anuncios.map((a) => (
-                    <div key={a.id} className={styles.cardAnuncio}>
-                      {/* Etiqueta de status */}
-                      <span className={styles.anuncioStatusTag}>{a.status}</span>
+                        <div className={styles.cardTop} />
 
-                      {/* Topo colorido */}
-                      <div className={styles.cardTop}/>
+                        <div className={styles.cardInfo}>
+                          <h3>{a.titulo}</h3>
 
-                      {/* Conteúdo */}
-                      <div className={styles.cardInfo}>
-                        <h3>{a.titulo}</h3>
+                          <p>📍 {a.cidade}</p>
 
-                        <p>
-                          <Image
-                            src="/local.png"
-                            width={18}
-                            height={18}
-                            alt="Local"
-                          />
-                          {a.cidade}, {a.estado}
-                        </p>
+                          <p>👥 Até {a.pessoas} pessoas</p>
 
-                        <p>
-                          <Image
-                            src="/Reservar.png"
-                            width={18}
-                            height={18}
-                            alt="Pessoas"
-                          />
-                          Até {a.pessoas} pessoas
-                        </p>
-
-                        <strong>
-                          R$ {a.preco}
-                          <span> /noite</span>
-                        </strong>
-
-                        <div className={styles.cardActions}>
-                          <button className={styles.viewBtn}>
-                            <Image
-                              src="/olho.png"
-                              width={18}
-                              height={18}
-                              alt="Ver"
-                            />
-                          </button>
-
-                          <button className={styles.editBtn}>
-                            <Image
-                              src="/edicao.jpg"
-                              width={18}
-                              height={18}
-                              alt="Editar"
-                            />
-                          </button>
+                          <strong>
+                            R$ {a.preco}
+                            <span> /noite</span>
+                          </strong>
+                          {a.status !== "Inativo" && (
+                            <button
+                              className={styles.cancelAnuncioBtn}
+                              onClick={() => cancelarAnuncio(a.id)}
+                            >
+                              Cancelar anúncio
+                            </button>
+                          )}
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  )}
                 </div>
               </div>
             )}
@@ -329,7 +334,7 @@ export default function Perfil() {
           </>
         )}
 
-        {/* FORM EDITAR PERFIL */}
+        {/* EDITAR PERFIL */}
         {isEditing && (
           <section className={styles.editProfileSection}>
             <h2 className={styles.sectionTitle}>Editar Perfil</h2>
@@ -358,7 +363,7 @@ export default function Perfil() {
 
               <div className={styles.formGroup}>
                 <label>Biografia</label>
-                <textarea placeholder="Conte um pouco sobre você..."></textarea>
+                <textarea placeholder="Conte um pouco sobre você..." />
               </div>
 
               <div className={styles.formActions}>
