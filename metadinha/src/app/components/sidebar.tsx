@@ -1,41 +1,60 @@
 "use client";
-import Link from "next/link";
+
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import styles from "../sidebar.module.css";
 
 export default function Sidebar() {
+  const router = useRouter();
   const pathname = usePathname();
 
-  function isActive(route:string) {
-    return pathname === route ? styles.itemMenuAtivo : styles.itemMenu;
+  function isActive(route: string) {
+    return pathname === route
+      ? `${styles.itemMenu} ${styles.itemMenuAtivo}`
+      : styles.itemMenu;
+  }
+
+  function navigate(route: string) {
+    router.push(route);
   }
 
   function logout() {
-    window.location.href = "/login";
+    router.push("/login");
   }
 
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.sidebarHeader}>
         <div className={styles.logo}>
           <Image src="/metadinhalogo.png" alt="logo" width={150} height={150} />
         </div>
-      </div>
+
       <nav className={styles.menu}>
-        <Link href="/" className={isActive("/")}>
+        <button className={isActive("/")} onClick={() => navigate("/")}>
           Início
-        </Link>
-        <Link href="/buscar" className={isActive("/buscar")}>
+        </button>
+
+        <button
+          className={isActive("/buscar")}
+          onClick={() => navigate("/buscar")}
+        >
           Buscar
-        </Link>
-        <Link href="/perfil" className={isActive("/perfil")}>
+        </button>
+
+        <button
+          className={isActive("/perfil")}
+          onClick={() => navigate("/perfil")}
+        >
           Perfil
-        </Link>
-        <Link href="/anunciar" className={isActive("/anunciar")}>
+        </button>
+
+        <button
+          className={isActive("/anunciar")}
+          onClick={() => navigate("/anunciar")}
+        >
           Anunciar+
-        </Link>
+        </button>
       </nav>
+
       <div className={styles.infoBox}>
         <strong>💡 Como funciona?</strong>
         <p>
@@ -44,17 +63,20 @@ export default function Sidebar() {
         </p>
       </div>
 
-      <div className={styles.profileUser}>
-        <div className={styles.avatar}>S</div>
-        <div>
-          <strong>Samuel</strong>
-          <span>samuelroberty95@gmail.com</span>
-        </div>
-      </div>
+      <div className={styles.footerArea}>
+        <div className={styles.profileUser}>
+          <div className={styles.avatar}>S</div>
 
-      <Link className={styles.logout} href="/login">
-        Sair
-      </Link>
+          <div className={styles.userInfo}>
+            <strong>Samuel</strong>
+            <span>samuelroberty95@gmail.com</span>
+          </div>
+        </div>
+
+        <button className={styles.logout} onClick={logout}>
+          Sair
+        </button>
+      </div>
     </aside>
   );
 }

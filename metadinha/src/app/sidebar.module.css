@@ -1,132 +1,160 @@
+/* ================= SIDEBAR BASE ================= */
+
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   width: 280px;
   height: 100vh;
-  background: #fff;
-  padding: 25px 20px;
+  padding: 18px 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-right: 1px solid #eee;
+  background: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
   overflow-y: auto;
 }
 
+/* ================= HEADER ================= */
 
-.sidebarHeader {
-  margin-bottom: 30px;
-}
 
 .logo {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 10px;
 }
 
-.subTitulo {
-  font-size: 20px;
-  font-weight: 600;
-  color: #6a00ff;
+
+.logo img {
+  border-radius: 18px;
 }
 
+.subTitulo {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6a00ff;
+  letter-spacing: 0.3px;
+}
+
+/* ================= MENU ================= */
 
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .itemMenu {
-  padding: 12px 18px;
-  border-radius: 12px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: none;
   cursor: pointer;
-  transition: 0.25s ease;
-  font-size: 16px;
-  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  color: #2b2b2b;
+  background: transparent;
+  text-align: left;
+  transition: all 0.25s ease;
 }
 
 .itemMenu:hover {
-  background: #f1e7ff;
+  background: #f4edff;
+  transform: translateX(4px);
 }
 
 .itemMenuAtivo {
   background: #ead6ff;
   color: #6a00ff;
   font-weight: 600;
-  border-radius: 12px;
-  padding: 12px 18px;
-  transform: translateX(6px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(106, 0, 255, 0.08);
 }
 
+/* ================= INFO BOX ================= */
 
 .infoBox {
-  background: #f4e8ff;
-  padding: 18px;
-  border-radius: 18px;
+  background: #f6f0ff;
+  padding: 20px;
+  border-radius: 20px;
   font-size: 14px;
-  margin: 25px 0;
+  margin: 30px 0;
+}
+
+.infoBox strong {
+  color: #6a00ff;
+  font-weight: 600;
 }
 
 .infoBox p {
-  margin-top: 6px;
-  color: #333;
-  line-height: 1.3rem;
+  margin-top: 8px;
+  line-height: 1.5rem;
+  color: #444;
 }
 
+/* ================= FOOTER AREA ================= */
+
+.footerArea {
+  padding-top: 5px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ================= USER ================= */
 
 .profileUser {
   display: flex;
-  gap: 12px;
   align-items: center;
-  margin-bottom: 15px;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
+
 .avatar {
-  width: 45px;
-  height: 45px;
-  background: #8a2be2;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #8a2be2, #6a00ff);
   color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .profileUser strong {
-  font-size: 16px;
-  display: block;
-  margin-bottom: 2px;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .profileUser span {
   font-size: 12px;
-  color: gray;
+  color: #777;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
 }
 
 
+/* ================= LOGOUT ================= */
+
 .logout {
-  display: block; 
   width: 100%;
-  padding: 12px 0;
-  text-align: center;
-  border-radius: 12px;
+  padding: 10px 0;
+  border-radius: 14px;
   background: #ffffff;
-  border: 1px solid #d5c7ff;
+  border: 1px solid #e0d6ff;
   cursor: pointer;
-  transition: 0.25s ease-in-out;
-  font-size: 16px;
-  color: #5c4ec4;
+  font-size: 14px;
   font-weight: 600;
-  text-decoration: none; 
+  color: #6a00ff;
+  transition: all 0.25s ease;
 }
 
 .logout:hover {
-  background: #f5f0ff;
-  border-color: #b7a5ff;
+  background: #f4edff;
 }
 
 .logout:active {

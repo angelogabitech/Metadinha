@@ -17,37 +17,35 @@ export default function Sidebar() {
 
   return (
     <aside className={styles.sidebar}>
-
-      {/* LOGO */}
       <div className={styles.sidebarHeader}>
         <div className={styles.logo}>
-          <Image
-            src="/metadinhalogo.png" 
-  alt="logo" 
-  width={150} 
-  height={150} 
-          />
-    
+          <Image src="/metadinhalogo.png" alt="logo" width={150} height={150} />
         </div>
       </div>
 
-      {/* MENU */}
       <nav className={styles.menu}>
-        <Link href="/" className={isActive("/")}>Início</Link>
-        <Link href="/buscar" className={isActive("/buscar")}>Buscar</Link>
-        <Link href="/perfil" className={isActive("/perfil")}>Perfil</Link>
-        <Link href="/anunciar" className={isActive("/anunciar")}>Anunciar+</Link>
+        <Link href="/" className={isActive("/")}>
+          Início
+        </Link>
+        <Link href="/buscar" className={isActive("/buscar")}>
+          Buscar
+        </Link>
+        <Link href="/perfil" className={isActive("/perfil")}>
+          Perfil
+        </Link>
+        <Link href="/anunciar" className={isActive("/anunciar")}>
+          Anunciar+
+        </Link>
       </nav>
 
-      {/* INFO BOX */}
       <div className={styles.infoBox}>
         <strong>💡 Como funciona?</strong>
         <p>
-          Encontre pessoas para dividir custos de hospedagem em hotéis e pousadas!
+          Encontre pessoas para dividir custos de hospedagem em hotéis e
+          pousadas!
         </p>
       </div>
 
-      {/* PERFIL */}
       <div className={styles.profileUser}>
         <div className={styles.avatar}>S</div>
         <div>
@@ -56,11 +54,9 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* BOTÃO SAIR */}
-       <Link className={styles.logout} href="/login">
+      <Link className={styles.logout} href="/login">
         Sair
       </Link>
-
     </aside>
   );
 }

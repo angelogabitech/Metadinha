@@ -12,17 +12,44 @@
 .topbar {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
 }
 
+/* BOTÃO VOLTAR — PROFISSIONAL */
 .backBtn {
-  background: #eee;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
 }
 
+/* hover suave */
+.backBtn:hover {
+  background: #f5f3ff;
+  border-color: #c7b8ff;
+  transform: translateX(-2px);
+}
+
+/* clique */
+.backBtn:active {
+  transform: scale(0.95);
+}
+
+/* seta */
+.backIcon {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6a00ff;
+  line-height: 1;
+}
+
+/* título */
 .titleGroup h1 {
   font-size: 28px;
   margin: 0;

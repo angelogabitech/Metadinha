@@ -44,9 +44,14 @@ export default function Anunciar() {
 
       <main className={styles.content}>
         <header className={styles.topbar}>
-          <Link href="/" className={styles.backBtn}>
-            ←
-          </Link>
+          <button
+            type="button"
+            className={styles.backBtn}
+            onClick={() => router.back()}
+            aria-label="Voltar"
+          >
+            <span className={styles.backIcon}>←</span>
+          </button>
 
           <div className={styles.titleGroup}>
             <h1>Anunciar propriedade</h1>
