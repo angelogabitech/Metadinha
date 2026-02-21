@@ -13,10 +13,20 @@
   background: #ffffff;
   border-right: 1px solid rgba(0, 0, 0, 0.06);
   overflow-y: auto;
+  transition: width 0.3s ease;
 }
 
-/* ================= HEADER ================= */
+.collapsed {
+  width: 90px !important;
+}
 
+.collapseBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+/* ================= HEADER ================= */
 
 .logo {
   display: flex;
@@ -159,4 +169,12 @@
 
 .logout:active {
   transform: scale(0.97);
+}
+
+/* Esconder sidebar fixa no mobile */
+
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
 }

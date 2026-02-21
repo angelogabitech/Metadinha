@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import styles from "./login.module.css";
-import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Login() {
   const router = useRouter();
@@ -13,30 +13,36 @@ export default function Login() {
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
 
+  useEffect(() => {
+  const isLogged = document.cookie.includes("auth=true");
+  if (isLogged) {
+    router.push("/");
+  }
+}, []);
+
   function validarEmail(email: string) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
   function handleLogin(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
+  e.preventDefault();
+  setErro("");
 
-    
-    setErro("");
-
-    
-    if (!email || !senha) {
-      setErro("Preencha todos os campos.");
-      return;
-    }
-
-    
-    if (!validarEmail(email)) {
-      setErro("Digite um e-mail válido.");
-      return;
-    }
-
-    router.push("/");
+  if (!email || !senha) {
+    setErro("Preencha todos os campos.");
+    return;
   }
+
+  if (!validarEmail(email)) {
+    setErro("Digite um e-mail válido.");
+    return;
+  }
+
+  // 🔐 Criar cookie de autenticação
+  document.cookie = "auth=true; path=/; max-age=86400"; // 1 dia
+
+  router.push("/");
+}
 
   return (
     <main className={styles.container}>

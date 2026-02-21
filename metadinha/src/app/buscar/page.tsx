@@ -2,7 +2,6 @@
 import Image from "next/image";
 import styles from "./buscar.module.css";
 import { useRouter } from "next/navigation";
-import Sidebar from "../components/sidebar";
 
 export default function BuscarPage() {
   const router = useRouter();
@@ -16,7 +15,6 @@ export default function BuscarPage() {
   return (
     <div className={styles.container}>
       
-      <Sidebar />
       <main className={styles.conteudo}>
         <h1>Encontre seu quarto ideal</h1>
         <p className={styles.sub}>3 opções encontradas</p>

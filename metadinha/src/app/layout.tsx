@@ -1,35 +1,28 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+"use client";
+
+import { usePathname } from "next/navigation";
+import Sidebar from "./components/sidebar";
+import BottomNav from "./components/bottomNav";
 import "./globals.css";
 
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const isLogin = pathname === "/login";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Metadinha - Viaje Juntos",
-  description: "Encontre pessoas para dividir hospedagens em viagens.",
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
   return (
     <html lang="pt-br">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        
-        <div className="page-content">{children}</div>
+      <body>
+        {!isLogin ? (
+          <>
+            <div className="app-layout">
+              <Sidebar />
+              <main className="page-content">{children}</main>
+            </div>
+            <BottomNav />
+          </>
+        ) : (
+          <main>{children}</main>
+        )}
       </body>
     </html>
   );
