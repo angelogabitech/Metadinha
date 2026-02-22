@@ -1,0 +1,179 @@
+/* ================= SIDEBAR BASE ================= */
+
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 18px 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  position: sticky;
+  top: 0;
+}
+
+.collapsed {
+  width: 90px !important;
+}
+
+.collapseBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+/* ================= HEADER ================= */
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+
+.logo img {
+  border-radius: 18px;
+}
+
+.subTitulo {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6a00ff;
+  letter-spacing: 0.3px;
+}
+
+/* ================= MENU ================= */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itemMenu {
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: #2b2b2b;
+  background: transparent;
+  text-align: left;
+  transition: all 0.25s ease;
+}
+
+.itemMenu:hover {
+  background: #f4edff;
+  transform: translateX(4px);
+}
+
+.itemMenuAtivo {
+  background: #ead6ff;
+  color: #6a00ff;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(106, 0, 255, 0.08);
+}
+
+/* ================= INFO BOX ================= */
+
+.infoBox {
+  background: #f6f0ff;
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  margin: 30px 0;
+}
+
+.infoBox strong {
+  color: #6a00ff;
+  font-weight: 600;
+}
+
+.infoBox p {
+  margin-top: 8px;
+  line-height: 1.5rem;
+  color: #444;
+}
+
+/* ================= FOOTER AREA ================= */
+
+.footerArea {
+  padding-top: 5px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ================= USER ================= */
+
+.profileUser {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #8a2be2, #6a00ff);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.profileUser strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.profileUser span {
+  font-size: 12px;
+  color: #777;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+
+/* ================= LOGOUT ================= */
+
+.logout {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e0d6ff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6a00ff;
+  transition: all 0.25s ease;
+}
+
+.logout:hover {
+  background: #f4edff;
+}
+
+.logout:active {
+  transform: scale(0.97);
+}
+
+/* Esconder sidebar fixa no mobile */
+
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+}
