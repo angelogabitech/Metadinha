@@ -12,7 +12,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-br">
       <body>
-        {!isLogin ? (
+        {isLogin ? (
+          <div className="login-layout">
+            {children}
+          </div>
+        ) : (
           <>
             <div className="app-layout">
               <Sidebar />
@@ -20,8 +24,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
             <BottomNav />
           </>
-        ) : (
-          <main>{children}</main>
         )}
       </body>
     </html>

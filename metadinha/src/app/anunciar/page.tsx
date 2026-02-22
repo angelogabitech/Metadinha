@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 import styles from "./anunciar.module.css";
-import Sidebar from "../components/sidebar";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Anunciar() {
@@ -19,8 +17,7 @@ export default function Anunciar() {
     localStorage.setItem("anuncio_temp", JSON.stringify(dados));
   }
 
-  function handleProximo(e: React.MouseEvent<HTMLButtonElement>) {
-    e.preventDefault();
+  function handleProximo() {
     setErro("");
 
     if (!titulo.trim() || !localizacao.trim()) {
@@ -39,85 +36,99 @@ export default function Anunciar() {
   }
 
   return (
-    <div className={styles.container}>
-      <Sidebar />
-
-      <main className={styles.content}>
-        <header className={styles.topbar}>
-          <button
-            type="button"
-            className={styles.backBtn}
-            onClick={() => router.back()}
-            aria-label="Voltar"
-          >
-            <span className={styles.backIcon}>←</span>
-          </button>
-
-          <div className={styles.titleGroup}>
-            <h1>Anunciar propriedade</h1>
-            <p>Compartilhe seu espaço com a comunidade Metadinha</p>
-          </div>
-        </header>
-
-        <div className={styles.steps}>
-          <div className={`${styles.step} ${styles.active}`}>1</div>
-          <div className={styles.line}></div>
-          <div className={styles.step}>2</div>
-          <div className={styles.line}></div>
-          <div className={styles.step}>3</div>
+    <main className={styles.container}>
+      {/* PROGRESSO */}
+      <div className={styles.progressWrapper}>
+        <div className={styles.progressBar}>
+          <div className={styles.progressFill} />
         </div>
+        <div className={styles.stepNumbers}>
+          <span className={styles.activeStep}>1</span>
+          <span>2</span>
+          <span>3</span>
+        </div>
+      </div>
 
+      {/* LAYOUT PRINCIPAL */}
+      <div className={styles.layout}>
+        {/* FORMULÁRIO */}
         <section className={styles.formSection}>
-          <h2>Informações básicas</h2>
+          <h1>Comece pelo básico</h1>
+          <p className={styles.subtitle}>
+            Conte um pouco sobre seu espaço.
+          </p>
 
           {erro && <p className={styles.errorMsg}>{erro}</p>}
 
-          <label className={styles.labelField}>Título do anúncio *</label>
-          <input
-            type="text"
-            placeholder="Ex: Quarto aconchegante em Copacabana"
-            className={styles.inputField}
-            value={titulo}
-            onChange={(e) => setTitulo(e.target.value)}
-          />
+          <div className={styles.inputGroup}>
+            <label>Título do anúncio *</label>
+            <input
+              type="text"
+              placeholder="Ex: Quarto aconchegante em Copacabana"
+              value={titulo}
+              onChange={(e) => setTitulo(e.target.value)}
+            />
+          </div>
 
-          <label className={styles.labelField}>Descrição</label>
-          <textarea
-            placeholder="Descreva seu espaço, localização e o que torna especial..."
-            className={styles.textareaField}
-            value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
-          />
+          <div className={styles.inputGroup}>
+            <label>Descrição</label>
+            <textarea
+              placeholder="Descreva seu espaço..."
+              value={descricao}
+              onChange={(e) => setDescricao(e.target.value)}
+            />
+          </div>
 
           <div className={styles.row}>
-            <div className={styles.col}>
-              <label className={styles.labelField}>Localização *</label>
+            <div className={styles.inputGroup}>
+              <label>Localização *</label>
               <input
                 type="text"
-                placeholder="Ex: Rio de Janeiro, RJ"
-                className={styles.inputField}
+                placeholder="Rio de Janeiro, RJ"
                 value={localizacao}
                 onChange={(e) => setLocalizacao(e.target.value)}
               />
             </div>
 
-            <div className={styles.col}>
-              <label className={styles.labelField}>Endereço</label>
+            <div className={styles.inputGroup}>
+              <label>Endereço</label>
               <input
                 type="text"
                 placeholder="Rua, número - Bairro"
-                className={styles.inputField}
                 value={endereco}
                 onChange={(e) => setEndereco(e.target.value)}
               />
             </div>
           </div>
-
-          <button className={styles.nextBtn} onClick={handleProximo}>
-            Próximo
-          </button>
         </section>
-      </main>
-    </div>
+
+        {/* PREVIEW LATERAL */}
+        <aside className={styles.previewSection}>
+          <div className={styles.previewCard}>
+            <h3>Prévia do anúncio</h3>
+            <div className={styles.previewImage}></div>
+            <h4>{titulo || "Seu título aparecerá aqui"}</h4>
+            <p>{localizacao || "Localização"}</p>
+          </div>
+        </aside>
+      </div>
+
+      {/* FOOTER FIXO */}
+      <div className={styles.footer}>
+        <button
+          className={styles.backBtn}
+          onClick={() => router.back()}
+        >
+          Voltar
+        </button>
+
+        <button
+          className={styles.nextBtn}
+          onClick={handleProximo}
+        >
+          Próximo
+        </button>
+      </div>
+    </main>
   );
 }

@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import styles from "./buscar.module.css";
 import { useRouter } from "next/navigation";
@@ -6,123 +7,106 @@ import { useRouter } from "next/navigation";
 export default function BuscarPage() {
   const router = useRouter();
 
-  function verDetalhes() {
-    router.push("/detalhesbusca/quartosimples");
-    router.push("/detalhesbusca/quartocasal");
-    router.push("/detalhesbusca/loft");
-  }
+  const anuncios = [
+    {
+      id: 1,
+      tag: "Hostel",
+      titulo: "Quarto simples",
+      local: "Caruaru, PE",
+      preco: "R$ 120",
+      imagem: "/quartosimples.webp",
+      rota: "/detalhesbusca/quartosimples",
+    },
+    {
+      id: 2,
+      tag: "Hotel",
+      titulo: "Quarto casal",
+      local: "Caruaru, PE",
+      preco: "R$ 150",
+      imagem: "/quartocasal.webp",
+      rota: "/detalhesbusca/quartocasal",
+    },
+    {
+      id: 3,
+      tag: "Apartamento",
+      titulo: "Loft compartilhado",
+      local: "Rio de Janeiro, RJ",
+      preco: "R$ 75",
+      imagem: "/imovel.jpeg",
+      rota: "/detalhesbusca/loft",
+    },
+  ];
 
   return (
-    <div className={styles.container}>
-      
-      <main className={styles.conteudo}>
-        <h1>Encontre seu quarto ideal</h1>
-        <p className={styles.sub}>3 opções encontradas</p>
-
-        
-        <div className={styles.barraPesquisa}>
-          <input
-            type="text"
-            placeholder="Buscar por cidade, título ou descrição..."
-          />
+    <main className={styles.conteudo}>
+      <div className={styles.wrapper}>
+        <div className={styles.header}>
+          <h1>Encontre seu quarto ideal</h1>
+          <p className={styles.sub}>{anuncios.length} opções encontradas</p>
         </div>
 
-        
-        <div className={styles.filtros}>
-          <select>
-            <option>Todos os tipos</option>
-            <option>Hotel</option>
-            <option>Pousada</option>
-            <option>Hostel</option>
-            <option>Apartamento</option>
-            <option>Casa</option>
-          </select>
+        {/* CARD DE FILTROS */}
+        <div className={styles.filtroCard}>
+          <div className={styles.barraPesquisa}>
+            <input
+              type="text"
+              placeholder="Buscar por cidade, título ou descrição..."
+            />
+          </div>
 
-          <select>
-            <option>Qualquer preço</option>
-            <option>Até R$ 50</option>
-            <option>R$ 51 - R$ 100</option>
-            <option>R$ 101 - R$ 200</option>
-            <option>R$ 200+</option>
-          </select>
+          <div className={styles.filtros}>
+            <select>
+              <option>Todos os tipos</option>
+            </select>
 
-          <select>
-            <option>Qualquer capacidade</option>
-            <option>1-2 pessoas</option>
-            <option>3-4 pessoas</option>
-            <option>5+ pessoas</option>
-          </select>
+            <select>
+              <option>Qualquer preço</option>
+            </select>
+
+            <select>
+              <option>Qualquer capacidade</option>
+            </select>
+          </div>
         </div>
 
-        
+        {/* GRID */}
         <div className={styles.gridCards}>
-          
-          <div className={styles.card}>
-            <span className={styles.tag}>Hostel</span>
+          {anuncios.map((anuncio, index) => (
+            <div
+              key={anuncio.id}
+              className={styles.card}
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
+              <span className={styles.tag}>{anuncio.tag}</span>
 
-            <div className={styles.foto}>
-              <Image
-                src="/quartosimples.webp"
-                alt="Quarto simples"
-                width={270}
-                height={200}
-              />
+              <div className={styles.foto}>
+                <img
+                  src={anuncio.imagem}
+                  alt={anuncio.titulo}
+                  width={600}
+                  height={400}
+                  className={styles.img}
+                />
+              </div>
+
+              <h3>{anuncio.titulo}</h3>
+              <p>{anuncio.local}</p>
+              <strong>{anuncio.preco}</strong>
+
+              <p className={styles.extraInfo}>
+                Wi-Fi • Ar-condicionado • Café incluso
+              </p>
+
+              <button
+                className={styles.btnRoxo}
+                onClick={() => router.push(anuncio.rota)}
+              >
+                Ver detalhes
+              </button>
             </div>
-
-            <h3>Quarto simples</h3>
-            <p>Caruaru, PE</p>
-            <strong>R$ 120</strong>
-
-            <button className={styles.btnRoxo} onClick={() => router.push("/detalhesbusca/quartosimples")}>
-              Ver detalhes
-            </button>
-          </div>
-
-          
-          <div className={styles.card}>
-            <span className={styles.tag}>Hotel</span>
-
-            <div className={styles.foto}>
-              <Image
-                src="/quartocasal.webp"
-                alt="Quarto casal"
-                width={270}
-                height={200}
-              />
-            </div>
-
-            <h3>Quarto casal</h3>
-            <p>Caruaru, PE</p>
-            <strong>R$ 150</strong>
-
-            <button className={styles.btnRoxo} onClick={() => router.push("/detalhesbusca/quartocasal")}>
-              Ver detalhes
-            </button>
-          </div>
-
-          
-          <div className={styles.card}>
-            <span className={styles.tag}>Apartamento</span>
-
-            <div className={styles.foto}>
-              <Image
-                src="/imovel.jpeg"
-                alt="Loft compartilhado"
-                width={270}
-                height={200}
-              />
-            </div>
-
-            <h3>Loft compartilhado</h3>
-            <p>Rio de Janeiro, RJ</p>
-            <strong>R$ 75</strong>
-
-            <button className={styles.btnRoxo} onClick={() => router.push("/detalhesbusca/loft")}>
-              Ver detalhes
-            </button>
-          </div>
+          ))}
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

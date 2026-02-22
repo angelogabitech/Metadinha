@@ -1,19 +1,18 @@
 /* ================= SIDEBAR BASE ================= */
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 280px;
   height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
   padding: 18px 15px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #ffffff;
-  border-right: 1px solid rgba(0, 0, 0, 0.06);
-  overflow-y: auto;
-  transition: width 0.3s ease;
+
+  position: sticky;
+  top: 0;
 }
 
 .collapsed {

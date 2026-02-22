@@ -86,7 +86,7 @@ export default function Login() {
         />
 
         
-        {erro && <p style={{ color: "red", marginBottom: "10px" }}>{erro}</p>}
+        {erro && <p className={styles.errorMsg}>{erro}</p>}
 
         
         <button onClick={handleLogin} className={styles.signinBtn}>

@@ -1,45 +1,102 @@
+.homeContainer {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ===== HERO ===== */
 
 .hero {
   text-align: center;
-  padding: 60px 0;
+  padding: clamp(40px, 6vw, 80px) 20px;
 }
 
 .hero h1 {
-  font-size: 42px;
+  font-size: clamp(26px, 4vw, 48px);
   font-weight: 800;
-}
-
-.highlight {
-  color: #6b3be8;
 }
 
 .hero p {
   margin-top: 10px;
-  font-size: 18px;
+  font-size: clamp(14px, 1.5vw, 18px);
   color: #666;
 }
 
+/* ===== SEARCH BOX ===== */
 
 .searchBox {
   margin: 40px auto;
-  padding: 25px;
-  width: 80%;
+  padding: clamp(20px, 3vw, 30px);
+  width: 100%;
+  max-width: 1100px;
   background: #fff;
   border-radius: 22px;
-  display: flex;
+  display: grid;
   gap: 18px;
-  align-items: center;
-  justify-content: center;
   box-shadow: 0 15px 35px rgba(0,0,0,0.09);
-  animation: fadeUp 0.9s ease forwards;
+
   opacity: 0;
+  transform: translateY(80px);
+  animation: searchBoxEnter 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-@keyframes fadeUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+@keyframes searchBoxEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+.searchBox .formGroup,
+.searchBox .btnSearch {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: searchInnerEnter 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes searchInnerEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes searchReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(70px) scale(0.97);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.01); /* leve overshoot */
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 
 .formGroup {
   position: relative;
@@ -73,7 +130,6 @@
   transition: 0.25s ease;
 }
 
-
 .inputFloating:focus + .labelFloating,
 .inputFloating:not(:placeholder-shown) + .labelFloating {
   top: -8px;
@@ -84,100 +140,127 @@
   color: #7a42ff;
 }
 
-
-select.inputFloating {
-  appearance: none;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg fill='%236b3be8' height='24' viewBox='0 0 24 24' width='24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-}
-
 .btnSearch {
-  padding: 16px 24px;
-  background: #7a42ff;
+  padding: 16px;
+  background: linear-gradient(135deg, #7a42ff, #5c2fe8);
   color: white;
   border: none;
   border-radius: 14px;
   cursor: pointer;
   font-weight: 600;
   font-size: 15px;
-  transition: 0.25s ease-in-out;
-  white-space: nowrap;
-}
+  transition: 
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.25s ease;
 
-.btnSearch:hover {
-  background: #5c2fe8;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(122, 66, 255, 0.25);
-}
-
-.revealText {
-  display: inline-block;
-  overflow: hidden;
-  font-size: 42px;
-  font-weight: 800;
-}
-
-.char {
-  display: inline-block;
   opacity: 0;
-  transform: translateY(20px);
-  animation: revealChar 0.45s forwards;
-  animation-delay: var(--delay);
+  transform: translateY(40px) scale(0.96);
+  animation: buttonEnter 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-@keyframes revealChar {
-  to {
+@keyframes buttonEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+
+  70% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
-.fadeSubtitle {
-  opacity: 0;
-  animation: fadeIn 1.2s ease forwards;
-  animation-delay: 2.4s;
+.btnSearch:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(122, 66, 255, 0.35);
 }
 
-@keyframes fadeIn {
-  to { opacity: 1; }
+.btnSearch:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 4px 12px rgba(122, 66, 255, 0.25);
 }
 
+/* ===== SEARCH RESPONSIVO ===== */
 
+@media (min-width: 900px) {
+  .searchBox {
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+  }
+
+  .btnSearch {
+    height: 56px;
+  }
+}
+
+/* ===== POR QUE ESCOLHER ===== */
 
 .pq {
   text-align: center;
-  padding: 80px 40px;
+  padding: clamp(60px, 6vw, 100px) 20px;
 }
 
 .pq h2 {
-  font-size: 36px;
+  font-size: clamp(22px, 3vw, 36px);
   font-weight: 800;
   margin-bottom: 10px;
 }
 
-.pq .subtitle {
-  font-size: 18px;
+.subtitle {
+  font-size: clamp(14px, 1.5vw, 18px);
   color: #666;
   margin-bottom: 40px;
 }
 
+/* ===== CARDS ===== */
 
 .cards {
-  display: flex;
-  justify-content: center;
+  display: grid;
   gap: 25px;
-  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+/* Ultra wide */
+@media (min-width: 1600px) {
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Notebook */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 899px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {
   background: white;
-  width: 240px;
-  padding: 25px;
+  padding: 30px;
   border-radius: 18px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.06);
   transition: 0.3s ease;
+  text-align: center;
 }
 
 .card:hover {
@@ -187,58 +270,11 @@ select.inputFloating {
 .card h3 {
   font-size: 20px;
   font-weight: 700;
-  color: #111;
-  margin-bottom: 8px;
+  margin: 12px 0;
 }
 
 .card p {
   color: #666;
   font-size: 15px;
   line-height: 1.4;
-}
-
-
-.fade-item {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.6s ease;
-}
-
-.fade-item.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.revealText {
-  display: inline-block;
-  overflow: hidden;
-  font-size: 42px;
-  font-weight: 800;
-}
-
-.char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: revealChar 0.45s forwards;
-  animation-delay: var(--delay);
-}
-
-@keyframes revealChar {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fadeSubtitle {
-  opacity: 0;
-  animation: fadeIn 1.2s ease forwards;
-  animation-delay: 2.4s; 
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
 }

@@ -1,387 +1,268 @@
 "use client";
-import Image from "next/image";
+
 import { useState, useEffect } from "react";
-import Sidebar from "../components/sidebar";
+import { useRouter } from "next/navigation";
 import styles from "./perfil.module.css";
-import Link from "next/link";
 
 export default function Perfil() {
+  const router = useRouter();
+
   const [activeTab, setActiveTab] = useState("reservas");
   const [isEditing, setIsEditing] = useState(false);
 
-  const mockReservas = [
-    {
-      id: "69349c5c",
-      criadoEm: "06/12/2025",
-      checkin: "09/12",
-      checkout: "16/12",
-      pessoas: 2,
-      total: 1190,
-      precoPessoa: 85,
-      status: "Pendente",
-    },
-  ];
-
   const [reservas, setReservas] = useState<any[]>([]);
-
   const [anuncios, setAnuncios] = useState<any[]>([]);
 
   useEffect(() => {
-    const dados = localStorage.getItem("anuncios");
-    if (dados) {
-      setAnuncios(JSON.parse(dados));
-    }
-  }, []);
+    const dadosReservas = localStorage.getItem("reservas");
+    const dadosAnuncios = localStorage.getItem("anuncios");
 
-  useEffect(() => {
-    const dados = localStorage.getItem("reservas");
-
-    if (dados) {
-      setReservas(JSON.parse(dados));
-    } else {
-      setReservas(mockReservas);
-    }
+    if (dadosReservas) setReservas(JSON.parse(dadosReservas));
+    if (dadosAnuncios) setAnuncios(JSON.parse(dadosAnuncios));
   }, []);
 
   function cancelarReserva(id: string) {
-    setReservas((prev) => {
-      const atualizadas = prev.map((r) =>
-        r.id === id ? { ...r, status: "Cancelada" } : r
-      );
+    const atualizadas = reservas.map((r) =>
+      r.id === id ? { ...r, status: "Cancelada" } : r,
+    );
+    setReservas(atualizadas);
+    localStorage.setItem("reservas", JSON.stringify(atualizadas));
+  }
 
-      localStorage.setItem("reservas", JSON.stringify(atualizadas));
-      return atualizadas;
-    });
+  function excluirReserva(id: string) {
+    const atualizadas = reservas.filter((r) => r.id !== id);
+    setReservas(atualizadas);
+    localStorage.setItem("reservas", JSON.stringify(atualizadas));
   }
 
   function cancelarAnuncio(id: string) {
-    setAnuncios((prev) => {
-      const atualizados = prev.map((a) =>
-        a.id === id ? { ...a, status: "Inativo" } : a
-      );
-
-      localStorage.setItem("anuncios", JSON.stringify(atualizados));
-      return atualizados;
-    });
+    const atualizados = anuncios.map((a) =>
+      a.id === id ? { ...a, status: "Inativo" } : a,
+    );
+    setAnuncios(atualizados);
+    localStorage.setItem("anuncios", JSON.stringify(atualizados));
   }
 
   return (
-    <div className={styles.container}>
-      <Sidebar />
-
-      <main className={styles.conteudo}>
-
-        {!isEditing && (
-          <div className={styles.profileHeader}>
-            <div className={styles.profileLeft}>
-              <div className={styles.profileAvatar}>S</div>
-
-              <div className={styles.profileInfo}>
-                <h2>Samuel</h2>
-
-                <div className={styles.profileMeta}>
-                  <span className={styles.metaItem}>
-                    <Image
-                      src="/calendar.jpg"
-                      width={20}
-                      height={20}
-                      alt="Calendário"
-                      className={styles.iconImg}
-                    />
-                    Membro desde Aug 2025
-                  </span>
-                </div>
-
-                <div className={styles.profileStats}>
-                  <span className={styles.statItem}>
-                    <Image
-                      src="/casa.jpg"
-                      width={20}
-                      height={20}
-                      alt="Casa"
-                      className={styles.iconImg}
-                    />
-                    <strong>1 propriedade</strong>
-                  </span>
-
-                  <span className={styles.statItem}>
-                    <Image
-                      src="/estrela.jpg"
-                      width={20}
-                      height={20}
-                      alt="Estrela"
-                      className={styles.iconImg}
-                    />
-                    <strong>0 avaliações</strong>
-                  </span>
-                </div>
-              </div>
+    <main className={styles.container}>
+      {/* HEADER */}
+      <div className={styles.profileHeader}>
+        <div className={styles.profileLeft}>
+          <div className={styles.avatar}>S</div>
+          <div>
+            <h2>Samuel</h2>
+            <p className={styles.memberSince}>Membro desde Aug 2025</p>
+            <div className={styles.stats}>
+              <span>
+                <strong>{anuncios.length}</strong> propriedades
+              </span>
+              <span>
+                <strong>0</strong> avaliações
+              </span>
             </div>
+          </div>
+        </div>
 
-            <button
-              className={styles.editProfileBtn}
-              onClick={() => setIsEditing(true)}
-            >
-              <Image
-                src="/edicao.jpg"
-                width={20}
-                height={20}
-                alt="Editar"
-                className={styles.iconImg}
+        <button
+          className={styles.primaryButton}
+          onClick={() => setIsEditing(true)}
+        >
+          Editar Perfil
+        </button>
+      </div>
+
+      {/* TABS */}
+      {!isEditing && (
+        <>
+          <div className={styles.mobileTabsWrapper}>
+            <div className={styles.tabs}>
+              <div
+                className={styles.indicator}
+                style={{
+                  transform:
+                    activeTab === "reservas"
+                      ? "translateX(0%)"
+                      : activeTab === "anuncios"
+                      ? "translateX(100%)"
+                      : "translateX(200%)",
+                }}
               />
-              Editar Perfil
-            </button>
+              <button
+                className={`${styles.tab} ${
+                  activeTab === "reservas" ? styles.active : ""
+                }`}
+                onClick={() => setActiveTab("reservas")}
+              >
+                Minhas Reservas
+              </button>
+
+              <button
+                className={`${styles.tab} ${
+                  activeTab === "anuncios" ? styles.active : ""
+                }`}
+                onClick={() => setActiveTab("anuncios")}
+              >
+                Meus Anúncios
+              </button>
+
+              <button
+                className={`${styles.tab} ${
+                  activeTab === "avaliacoes" ? styles.active : ""
+                }`}
+                onClick={() => setActiveTab("avaliacoes")}
+              >
+                Avaliações
+              </button>
+            </div>
           </div>
-        )}
 
-        {!isEditing && (
-          <div className={styles.tabsContainer}>
-            <button
-              className={`${styles.tabButton} ${
-                activeTab === "reservas" ? styles.active : ""
-              }`}
-              onClick={() => setActiveTab("reservas")}
-            >
-              Minhas Reservas
-            </button>
-
-            <button
-              className={`${styles.tabButton} ${
-                activeTab === "anuncios" ? styles.active : ""
-              }`}
-              onClick={() => setActiveTab("anuncios")}
-            >
-              Meus Anúncios
-            </button>
-
-            <button
-              className={`${styles.tabButton} ${
-                activeTab === "avaliacoes" ? styles.active : ""
-              }`}
-              onClick={() => setActiveTab("avaliacoes")}
-            >
-              Avaliações
-            </button>
-          </div>
-        )}
-
-        {!isEditing && (
-          <>
+          <div
+            key={activeTab}
+            className={`${styles.contentBox} ${styles.fadeSwitch}`}
+          >
+            {/* RESERVAS */}
             {activeTab === "reservas" && (
-              <div className={styles.tabContent}>
+              <>
                 <h2>Minhas Reservas</h2>
 
-                {reservas.length === 0 ? (
-                  <div className={styles.emptyBox}>
-                    <Image
-                      src="/calendar.jpg"
-                      width={60}
-                      height={60}
-                      alt="Calendário"
-                      className={styles.emptyIcon}
-                    />
-                    <p className={styles.emptyText}>
-                      Você ainda não fez nenhuma reserva.
-                    </p>
-                    <p className={styles.emptySub}>
-                      Explore as propriedades e faça sua primeira reserva!
-                    </p>
-                  </div>
-                ) : (
-                  <div className={styles.reservaList}>
-                    {reservas.map((r) => (
-                      <div key={r.id} className={styles.reservaCard}>
-                        <div className={styles.reservaLeft}>
-                          <h3>Reserva #{r.id}</h3>
-                          <p className={styles.dataCriacao}>
-                            Criada em {r.criadoEm}
-                          </p>
+                <div className={styles.reservaGrid}>
+                  {reservas.map((r) => (
+                    <div key={r.id} className={styles.reservaCard}>
+                      <div className={styles.imageWrapper}>
+                        <img
+                          src="/quartocasal.webp"
+                          alt="Imagem reserva"
+                          className={styles.cardImage}
+                        />
+                      </div>
+                      <div className={styles.cardInfo}>
+                        <h3>Reserva #{r.id}</h3>
+                        <p>
+                          {r.checkin} - {r.checkout}
+                        </p>
+                        <p>Status: {r.status}</p>
+                        <strong>
+                          R$ {(r.total ?? 0).toLocaleString("pt-BR")}
+                        </strong>
 
-                          <div className={styles.reservaInfoRow}>
-                            <Image
-                              src="/calendario.png"
-                              width={18}
-                              height={18}
-                              alt="Calendário"
-                            />
-                            <span>
-                              {r.checkin} - {r.checkout}
-                            </span>
-
-                            <Image
-                              src="/Reservar.png"
-                              width={18}
-                              height={18}
-                              alt="Pessoas"
-                              className={styles.peopleIcon}
-                            />
-                            <span>{r.pessoas} pessoas</span>
-                          </div>
-                        </div>
-
-                        <div className={styles.reservaRight}>
-                          <p className={styles.total}>
-                            Total:{" "}
-                            <strong>
-                              R$ {(r.total ?? 0).toLocaleString("pt-BR")}
-                            </strong>
-                          </p>
-                          <p className={styles.precoPessoa}>
-                            (R$ {(r.precoPessoa ?? 0).toFixed(2)}/pessoa)
-                          </p>
-
-                          <span className={styles.statusTag}>{r.status}</span>
+                        <div className={styles.cardActions}>
                           {r.status !== "Cancelada" && (
                             <button
-                              className={styles.cancelReservaBtn}
+                              className={styles.dangerButton}
                               onClick={() => cancelarReserva(r.id)}
                             >
-                              Cancelar reserva
+                              Cancelar
                             </button>
                           )}
+
+                          <button
+                            className={styles.secondaryButton}
+                            onClick={() => excluirReserva(r.id)}
+                          >
+                            Excluir
+                          </button>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
 
+            {/* ANÚNCIOS */}
             {activeTab === "anuncios" && (
-              <div className={styles.tabContent}>
+              <>
                 <div className={styles.headerLine}>
                   <h2>Meus Anúncios</h2>
 
-                  <Link href="/anunciar" className={styles.newButton}>
-                    <span>＋</span> Novo Anúncio
-                  </Link>
+                  <button
+                    className={styles.primaryButton}
+                    onClick={() => router.push("/anunciar")}
+                  >
+                    + Novo Anúncio
+                  </button>
                 </div>
 
-                <div className={styles.anuncioList}>
-                  {anuncios.length === 0 ? (
-                    <div className={styles.emptyBox}>
-                      <Image
-                        src="/casa.jpg"
-                        width={60}
-                        height={60}
-                        alt="Nenhum anúncio"
-                        className={styles.emptyIcon}
-                      />
-                      <p className={styles.emptyText}>
-                        Você ainda não criou nenhum anúncio.
-                      </p>
-                      <p className={styles.emptySub}>
-                        Publique um imóvel para começar!
-                      </p>
-                    </div>
-                  ) : (
-                    anuncios.map((a) => (
-                      <div key={a.id} className={styles.cardAnuncio}>
-                        <span className={styles.anuncioStatusTag}>
-                          {a.status}
-                        </span>
+                <div className={styles.anuncioGrid}>
+                  {anuncios.map((a) => (
+                    <div key={a.id} className={styles.anuncioCard}>
+                      <div className={styles.imageWrapper}>
+                        <img
+                          src="/quartocasal.webp"
+                          alt="Imagem anúncio"
+                          className={styles.cardImage}
+                        />
+                      </div>
+                      <div className={styles.cardInfo}>
+                        <h3>{a.titulo}</h3>
+                        <p>📍 {a.cidade}</p>
+                        <strong>R$ {a.preco} /noite</strong>
 
-                        <div className={styles.cardTop} />
-
-                        <div className={styles.cardInfo}>
-                          <h3>{a.titulo}</h3>
-
-                          <p>📍 {a.cidade}</p>
-
-                          <p>👥 Até {a.pessoas} pessoas</p>
-
-                          <strong>
-                            R$ {a.preco}
-                            <span> /noite</span>
-                          </strong>
-                          {a.status !== "Inativo" && (
-                            <button
-                              className={styles.cancelAnuncioBtn}
-                              onClick={() => cancelarAnuncio(a.id)}
-                            >
-                              Cancelar anúncio
-                            </button>
-                          )}
+                        <div className={styles.cardActions}>
+                          <button
+                            className={styles.secondaryButton}
+                            onClick={() => cancelarAnuncio(a.id)}
+                          >
+                            Desativar
+                          </button>
                         </div>
                       </div>
-                    ))
-                  )}
+                    </div>
+                  ))}
                 </div>
-              </div>
+              </>
             )}
 
+            {/* AVALIAÇÕES */}
             {activeTab === "avaliacoes" && (
-              <div className={styles.tabContent}>
-                <h2>Avaliações</h2>
-
-                <div className={styles.emptyBox}>
-                  <Image
-                    src="/estrela.jpg"
-                    width={60}
-                    height={60}
-                    alt="Nenhuma avaliação"
-                    className={styles.emptyIcon}
-                  />
-                  <p className={styles.emptyText}>
-                    Você ainda não recebeu avaliações.
-                  </p>
-                  <p className={styles.emptySub}>
-                    Conclua estadias para ver avaliações aqui.
-                  </p>
-                </div>
+              <div className={styles.emptyBox}>
+                <p>Você ainda não recebeu avaliações.</p>
               </div>
             )}
-          </>
-        )}
+          </div>
+        </>
+      )}
 
-        {isEditing && (
-          <section className={styles.editProfileSection}>
-            <h2 className={styles.sectionTitle}>Editar Perfil</h2>
+      {/* EDITAR PERFIL */}
+      {isEditing && (
+        <section className={styles.editSection}>
+          <h2>Editar Perfil</h2>
 
-            <form className={styles.editForm}>
-              <div className={styles.formRow}>
-                <div className={styles.formGroup}>
-                  <label>Nome completo</label>
-                  <input type="text" defaultValue="Samuel" />
-                </div>
+          <form className={styles.editForm}>
+            <div className={styles.inputGroup}>
+              <label>Nome</label>
+              <input type="text" defaultValue="Samuel" />
+            </div>
 
-                <div className={styles.formGroup}>
-                  <label>Telefone</label>
-                  <input type="text" defaultValue="(11) 99999-9999" />
-                </div>
-              </div>
+            <div className={styles.inputGroup}>
+              <label>Telefone</label>
+              <input type="text" defaultValue="(11) 99999-9999" />
+            </div>
 
-              <div className={styles.formGroup}>
-                <label>Tipo de usuário</label>
-                <select defaultValue="Apenas hóspede">
-                  <option>Apenas hóspede</option>
-                  <option>Anfitrião</option>
-                  <option>Hóspede e Anfitrião</option>
-                </select>
-              </div>
+            <div className={styles.inputGroupFull}>
+              <label>Biografia</label>
+              <textarea
+                className={styles.textarea}
+                placeholder="Conte um pouco sobre você..."
+              />
+            </div>
 
-              <div className={styles.formGroup}>
-                <label>Biografia</label>
-                <textarea placeholder="Conte um pouco sobre você..." />
-              </div>
+            <div className={styles.formActions}>
+              <button
+                type="button"
+                className={styles.secondaryButton}
+                onClick={() => setIsEditing(false)}
+              >
+                Cancelar
+              </button>
 
-              <div className={styles.formActions}>
-                <button
-                  type="button"
-                  className={styles.cancelBtn}
-                  onClick={() => setIsEditing(false)}
-                >
-                  Cancelar
-                </button>
-
-                <button type="submit" className={styles.saveBtn}>
-                  Salvar alterações
-                </button>
-              </div>
-            </form>
-          </section>
-        )}
-      </main>
-    </div>
+              <button type="submit" className={styles.primaryButton}>
+                Salvar
+              </button>
+            </div>
+          </form>
+        </section>
+      )}
+    </main>
   );
 }
