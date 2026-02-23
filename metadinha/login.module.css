@@ -1,0 +1,139 @@
+
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f5ff;
+  padding: clamp(16px, 4vw, 40px);
+}
+
+.card {
+  background: #fff;
+  width: 100%;
+  max-width: 420px;
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/*ABAS Cadastro/Lo */
+.tabs {
+  position: relative;
+  display: flex;
+  background: #f3f4f6;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.tabBtn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  z-index: 2;
+  transition: 0.2s ease;
+}
+
+.activeText {
+  color: #fff;
+}
+
+/* Indicador animado */
+.indicator {
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  background: #6a00ff;
+  border-radius: 12px;
+  top: 0;
+  left: 0;
+  transition: 0.3s ease;
+}
+
+.moveRight {
+  left: 50%;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: clamp(20px, 2.5vw, 26px);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.subtitulo {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.divisor {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.divisor::before,
+.divisor::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.divisor span {
+  margin: 0 10px;
+}
+
+.input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 14px;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #6a00ff;
+  box-shadow: 0 0 0 3px rgba(106, 0, 255, 0.1);
+}
+
+.signinBtn {
+  width: 100%;
+  background: #6a00ff;
+  color: #fff;
+  padding: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+  border: none;
+  transition: 0.2s ease;
+}
+
+.signinBtn:hover {
+  background: #5800d6;
+}
+
+.errorMsg {
+  color: #e63946;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
