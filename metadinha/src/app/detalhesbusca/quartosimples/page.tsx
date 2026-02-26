@@ -1,8 +1,6 @@
 "use client";
 import styles from "./quartosimples.module.css";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Sidebar from "@/app/components/sidebar";
 import { useState } from "react";
 
 export default function QuartoSimples() {
@@ -76,7 +74,7 @@ export default function QuartoSimples() {
   return (
     <div className={styles.container}>
 
-      <Sidebar />
+      
 
       <main className={styles.container}>
         <button onClick={() => router.back()} className={styles.backBtn}>
@@ -94,7 +92,7 @@ export default function QuartoSimples() {
 
           <div className={styles.colEsq}>
             <div className={styles.imageWrapper}>
-              <Image
+              <img
                 src="/quartosimples.webp"
                 alt="Quarto simples"
                 width={900}

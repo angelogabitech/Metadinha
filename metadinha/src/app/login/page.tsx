@@ -1,53 +1,78 @@
 "use client";
-
-import Image from "next/image";
 import styles from "./login.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
-export default function Login() {
+export default function Auth() {
   const router = useRouter();
+
+  const [aba, setAba] = useState<"login" | "cadastro">("login");
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [nome, setNome] = useState("");
   const [erro, setErro] = useState("");
 
   useEffect(() => {
-  const isLogged = document.cookie.includes("auth=true");
-  if (isLogged) {
-    router.push("/");
-  }
-}, []);
+    const isLogged = document.cookie.includes("auth=true");
+    if (isLogged) {
+      router.push("/");
+    }
+  }, []);
 
   function validarEmail(email: string) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
+  function senhaForte(valor: string) {
+    return /^(?=.*[A-Za-z])(?=.*\d).{6,}$/.test(valor);
+  }
+
   function handleLogin(e: React.MouseEvent<HTMLButtonElement>) {
-  e.preventDefault();
-  setErro("");
+    e.preventDefault();
+    setErro("");
 
-  if (!email || !senha) {
-    setErro("Preencha todos os campos.");
-    return;
+    if (!email || !senha) {
+      setErro("Preencha todos os campos.");
+      return;
+    }
+
+    if (!validarEmail(email)) {
+      setErro("Digite um e-mail válido.");
+      return;
+    }
+
+    document.cookie = "auth=true; path=/; max-age=86400";
+    router.push("/");
   }
 
-  if (!validarEmail(email)) {
-    setErro("Digite um e-mail válido.");
-    return;
+  function handleCadastro(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    setErro("");
+
+    if (!nome || !email || !senha) {
+      setErro("Preencha todos os campos.");
+      return;
+    }
+
+    if (!validarEmail(email)) {
+      setErro("Digite um e-mail válido.");
+      return;
+    }
+
+    if (!senhaForte(senha)) {
+      setErro("Senha fraca. Use letras e números.");
+      return;
+    }
+  {/*  Cookies */}
+    document.cookie = "auth=true; path=/; max-age=86400";
+    router.push("/");
   }
-
-  // 🔐 Criar cookie de autenticação
-  document.cookie = "auth=true; path=/; max-age=86400"; // 1 dia
-
-  router.push("/");
-}
 
   return (
     <main className={styles.container}>
       <div className={styles.card}>
-        <Image
+        <img
           src="/metadinha.png"
           width={80}
           height={80}
@@ -55,28 +80,72 @@ export default function Login() {
           className={styles.logo}
         />
 
-        <h1 className={styles.title}>Bem vindo ao Metadinha</h1>
-        <p className={styles.subtitulo}>Faça o Login Para Continuar</p>
+        {/*  BOTÕES TIPO ABA */}
+        <div className={styles.tabs}>
+            <div
+              className={`${styles.indicator} ${
+                aba === "cadastro" ? styles.moveRight : ""
+              }`}
+            />
 
-        <button className={styles.googleBtn}>
-          <Image src="/google.logo.webp" width={20} height={20} alt="Google" />
-          Continue com o Google
-        </button>
+            <button
+              onClick={() => setAba("login")}
+              className={`${styles.tabBtn} ${
+                aba === "login" ? styles.activeText : ""
+              }`}
+            >
+              Login
+            </button>
+
+            <button
+              onClick={() => setAba("cadastro")}
+              className={`${styles.tabBtn} ${
+                aba === "cadastro" ? styles.activeText : ""
+              }`}
+            >
+              Cadastro
+            </button>
+          </div>
+
+
+        {aba === "login" ? (
+          <>
+            <h1 className={styles.title}>Bem vindo ao Metadinha</h1>
+            <p className={styles.subtitulo}>
+              Faça o Login Para Continuar
+            </p>
+          </>
+        ) : (
+          <>
+            <h1 className={styles.title}>Crie sua conta</h1>
+            <p className={styles.subtitulo}>
+              Cadastre-se para continuar
+            </p>
+          </>
+        )}
 
         <div className={styles.divisor}>
           <span>OR</span>
         </div>
 
-        
+        {aba === "cadastro" && (
+          <input
+            type="text"
+            placeholder="Nome completo"
+            className={styles.input}
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+          />
+        )}
+
         <input
           type="email"
-          placeholder="you@gmail.com"
+          placeholder="email@exemplo.com"
           className={styles.input}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        
         <input
           type="password"
           placeholder="Senha"
@@ -85,17 +154,17 @@ export default function Login() {
           onChange={(e) => setSenha(e.target.value)}
         />
 
-        
         {erro && <p className={styles.errorMsg}>{erro}</p>}
 
-        
-        <button onClick={handleLogin} className={styles.signinBtn}>
-          Entrar
-        </button>
-
-        <div className={styles.links}>
-          <a href="/cadastro">Cadastre-se</a>
-        </div>
+        {aba === "login" ? (
+          <button onClick={handleLogin} className={styles.signinBtn}>
+            Entrar
+          </button>
+        ) : (
+          <button onClick={handleCadastro} className={styles.signinBtn}>
+            Criar Conta
+          </button>
+        )}
       </div>
     </main>
   );

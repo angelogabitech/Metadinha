@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 import { useReveal } from "./hooks/useReveal";
@@ -75,25 +74,25 @@ export default function Home() {
 
           <div className={styles.cards}>
             <div className={`${styles.card} fade-item`}>
-              <Image src="/shield.png" alt="icon" width={48} height={48} />
+              <img src="/shield.png" alt="icon" width={48} height={48} />
               <h3>Segurança garantida</h3>
               <p>Perfis verificados e avaliações reais</p>
             </div>
 
             <div className={`${styles.card} fade-item`}>
-              <Image src="/group.png" alt="icon" width={48} height={48} />
+              <img src="/group.png" alt="icon" width={48} height={48} />
               <h3>Comunidade ativa</h3>
               <p>Milhares de viajantes compartilhando experiências</p>
             </div>
 
             <div className={`${styles.card} fade-item`}>
-              <Image src="/suport.png" alt="icon" width={48} height={48} />
+              <img src="/suport.png" alt="icon" width={48} height={48} />
               <h3>Suporte completo</h3>
               <p>Atendimento 24h</p>
             </div>
 
             <div className={`${styles.card} fade-item`}>
-              <Image src="/estrelaa.png" alt="icon" width={48} height={48} />
+              <img src="/estrelaa.png" alt="icon" width={48} height={48} />
               <h3>Experiências únicas</h3>
               <p>Conheça pessoas incríveis e faça amizades para a vida</p>
             </div>

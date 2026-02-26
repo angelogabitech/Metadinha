@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import styles from "../sidebar.module.css";
 
@@ -22,7 +21,7 @@ export default function Sidebar() {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.logo}>
-        <Image src="/metadinhalogo.png" alt="logo" width={150} height={150} />
+        <img src="/metadinhalogo.png" alt="logo" width={150} height={150} />
       </div>
 
       <nav className={styles.menu}>
