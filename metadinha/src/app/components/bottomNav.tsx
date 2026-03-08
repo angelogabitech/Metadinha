@@ -14,6 +14,10 @@ export default function BottomNav() {
     { icon: "👤", label: "Perfil", route: "/perfil" },
   ];
 
+  const hideNavbar = pathname.startsWith("/anunciar");
+
+  if (hideNavbar) return null;
+
   return (
     <nav className={styles.bottomNav}>
       {items.map((item) => (

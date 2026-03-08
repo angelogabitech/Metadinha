@@ -38,7 +38,7 @@ export default function Sidebar() {
         </button>
 
         <button className={isActive("/anunciar")} onClick={() => router.push("/anunciar")}>
-          Anunciar+
+          Anunciar
         </button>
       </nav>
 

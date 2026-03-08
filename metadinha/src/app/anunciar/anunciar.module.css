@@ -1,199 +1,715 @@
 .container {
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
+  padding: 40px;
+  max-width: 1200px;
 }
 
 .content {
-  flex: 1;
-  padding: 40px 60px;
+  display: grid;
+
+  grid-template-columns: 1fr 380px;
+
+  gap: 40px;
+
+  align-items: start;
 }
 
-.topbar {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
+.form {
+  background: white;
 
-/* BOTÃO VOLTAR — PROFISSIONAL */
-.backBtn {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  background: #ffffff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.25s ease;
-}
-
-/* hover suave */
-.backBtn:hover {
-  background: #f5f3ff;
-  border-color: #c7b8ff;
-  transform: translateX(-2px);
-}
-
-/* clique */
-.backBtn:active {
-  transform: scale(0.95);
-}
-
-/* seta */
-.backIcon {
-  font-size: 18px;
-  font-weight: 600;
-  color: #6a00ff;
-  line-height: 1;
-}
-
-/* título */
-.titleGroup h1 {
-  font-size: 28px;
-  margin: 0;
-}
-
-.titleGroup p {
-  color: #777;
-  margin: 0;
-}
-
-
-.steps {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 80px;
-  margin: 35px 0;
-}
-
-.step {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #e5e5e5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: #555;
-  transition: 0.3s;
-}
-
-.active {
-  background: #7750ff;
-  color: #fff;
-}
-
-.line {
-  width: 120px;
-  height: 4px;
-  background: #ddd;
-  border-radius: 3px;
-}
-
-
-.formSection {
-  background: #fff;
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-  width: 800px;
-  margin: 0 auto;
-  border: 2px solid #e7e7e7;
-}
-
-.formSection h2 {
-  margin-bottom: 20px;
-}
-
-.labelField {
-  display: block;
-  margin: 14px 0 6px;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.inputField,
-.textareaField {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 15px;
+
+  border-radius: 16px;
+
+  padding: 28px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+
+  animation: fadeIn 0.35s ease;
 }
 
-.textareaField {
-  height: 140px;
-  resize: none;
-}
+.preview {
+  position: sticky;
 
-.row {
+  top: 140px;
+
   display: flex;
-  gap: 25px;
-  margin-top: 12px;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding-top: 80px;
 }
 
-.col {
-  flex: 1;
+.buttons {
+  margin-top: 30px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
 }
 
-.nextBtn {
-  display: block;
-  margin: 25px auto 0;
-  background: #7750ff;
-  color: #fff;
+.nextButton {
+  background: linear-gradient(135deg, #7c3aed, #5b2be0);
+
+  color: white;
+
   border: none;
-  padding: 12px 22px;
+
+  padding: 16px 36px;
+
+  border-radius: 30px;
+
+  font-weight: 600;
+
   font-size: 16px;
-  border-radius: 8px;
+
   cursor: pointer;
+
+  transition: all 0.25s ease;
+
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35);
+}
+
+.nextButton:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 16px 35px rgba(124, 58, 237, 0.45);
+}
+
+.backButton {
+  background: white;
+
+  border: 2px solid #e9e5ff;
+
+  color: #6b4eff;
+
+  padding: 14px 28px;
+
+  border-radius: 30px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
   transition: 0.2s;
 }
 
-.nextBtn:hover {
-  background: #5a36d8;
+.backButton:hover {
+  background: #f6f3ff;
 }
 
+.errorBox {
+  background: #fff4f4;
 
-@media (max-width: 900px) {
-  .formSection {
-    width: 100%;
-  }
+  border: 1px solid #ffb4b4;
 
-  .steps {
-    gap: 40px;
-  }
+  color: #eb1d0f;
 
-  .line {
-    width: 70px;
-  }
+  padding: 12px 16px;
+
+  border-radius: 10px;
+
+  margin-bottom: 20px;
+
+  font-size: 14px;
 }
 
-@media (max-width: 650px) {
-  .content {
-    padding: 20px;
-  }
+/* Preview Card css*/
 
-  .steps {
-    gap: 20px;
-  }
+.previewCard {
+  width: 100%;
 
-  .line {
-    width: 40px;
-  }
+  max-width: 360px;
 
-  .row {
-    flex-direction: column;
-  }
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  background: white;
+
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
 }
 
-.errorMsg {
-  color: #e63946;
-  font-size: 0.95rem;
+.previewImage {
+  position: relative;
+
+  width: 100%;
+
+  height: 200px;
+}
+
+.previewImage img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.noImage {
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #f5f5f5;
+
+  color: #888;
+}
+
+.favoriteBtn {
+  position: absolute;
+
+  top: 10px;
+
+  left: 10px;
+
+  background: white;
+
+  border: none;
+
+  border-radius: 50%;
+
+  width: 34px;
+
+  height: 34px;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.propertyTag {
+  position: absolute;
+
+  top: 10px;
+
+  right: 10px;
+
+  background: #e9e5ff;
+
+  color: #6d28d9;
+
+  padding: 4px 10px;
+
+  border-radius: 14px;
+
+  font-size: 12px;
+
   font-weight: 600;
-  margin-bottom: 15px;
+}
+
+.previewContent {
+  padding: 16px;
+}
+
+.previewTitle {
+  font-size: 18px;
+
+  font-weight: 600;
+
+  margin-bottom: 4px;
+}
+
+.previewLocation {
+  color: #555;
+
+  font-size: 14px;
+
+  margin-bottom: 8px;
+}
+
+.previewType {
+  font-size: 13px;
+
+  color: #777;
+
+  margin-bottom: 12px;
+}
+
+.previewFooter {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 14px;
+}
+
+.previewPrice strong {
+  font-size: 18px;
+}
+
+.previewPrice span {
+  display: block;
+
+  font-size: 12px;
+
+  color: #666;
+}
+
+.previewButton {
+  width: 100%;
+
+  padding: 12px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #7c3aed, #5b2be0);
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+/* step2 css*/
+
+.optionIcon {
+  font-size: 24px;
+
+  margin-bottom: 6px;
+}
+
+.optionsGrid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+
+  gap: 14px;
+
+  margin-bottom: 20px;
+}
+
+.optionCard {
+  border: 2px solid #ece7ff;
+
+  border-radius: 12px;
+
+  padding: 16px;
+
+  cursor: pointer;
+
   text-align: center;
+
+  font-weight: 500;
+
+  background: white;
+
+  transition: 0.2s;
+}
+
+.optionCard:hover {
+  border-color: #7c3aed;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+}
+
+.optionActive {
+  border-color: #7c3aed;
+
+  background: #f3efff;
+
+  color: #5b21b6;
+}
+
+.tagsGrid {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+.tag {
+  padding: 8px 14px;
+
+  border-radius: 20px;
+
+  border: 1px solid #ddd;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  background: white;
+
+  transition: 0.15s;
+}
+
+.tag:hover {
+  border-color: #7c3aed;
+}
+
+.tagActive {
+  background: #7c3aed;
+
+  color: white;
+
+  border-color: #7c3aed;
+}
+
+.capacityGrid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 16px;
+
+  margin-top: 10px;
+}
+
+.capacityGrid div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.capacityGrid span {
+  font-size: 13px;
+
+  color: #666;
+}
+
+/* step3 css */
+
+.stepTitle {
+  font-size: 22px;
+  font-weight: 600;
+
+  margin-bottom: 20px;
+}
+
+.uploadBox {
+  position: relative;
+
+  border: 2px dashed #d6ccff;
+
+  border-radius: 16px;
+
+  padding: 40px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  background: #faf8ff;
+
+  transition: 0.2s;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 160px;
+}
+
+.uploadBox:hover {
+  border-color: #7c3aed;
+
+  background: #f5f1ff;
+}
+
+.fileInput {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0;
+
+  cursor: pointer;
+}
+
+.uploadContent {
+  pointer-events: none;
+}
+
+.uploadIcon {
+  font-size: 36px;
+
+  margin-bottom: 10px;
+}
+
+.uploadTitle {
+  font-weight: 600;
+
+  color: #6d28d9;
+}
+
+.uploadSub {
+  font-size: 13px;
+
+  color: #777;
+}
+
+.imagesGrid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+
+  gap: 14px;
+
+  margin-top: 14px;
+}
+
+.addImageCard {
+  border: 2px dashed #d6ccff;
+
+  border-radius: 14px;
+
+  height: 160px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  color: #6d28d9;
+
+  font-weight: 500;
+
+  background: #faf8ff;
+
+  transition: 0.2s;
+}
+
+.addImageCard:hover {
+  border-color: #7c3aed;
+
+  background: #f5f1ff;
+}
+
+.addIcon {
+  font-size: 28px;
+
+  margin-bottom: 6px;
+}
+
+.imageCard {
+  position: relative;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  height: 160px;
+}
+
+.imageCard img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.removeImage {
+  position: absolute;
+
+  top: 6px;
+
+  right: 6px;
+
+  background: rgba(0, 0, 0, 0.6);
+
+  color: white;
+
+  border: none;
+
+  border-radius: 50%;
+
+  width: 28px;
+
+  height: 28px;
+
+  cursor: pointer;
+}
+
+.coverTag {
+  position: absolute;
+
+  bottom: 6px;
+
+  left: 6px;
+
+  background: #7c3aed;
+
+  color: white;
+
+  padding: 4px 8px;
+
+  font-size: 12px;
+
+  border-radius: 6px;
+}
+
+/* step4 css */
+
+.stepTitle{
+
+ font-size:22px;
+
+ font-weight:600;
+
+ margin-bottom:20px;
+
+}
+
+.stepSection{
+
+ background:white;
+
+ border-radius:16px;
+
+ padding:22px;
+
+ margin-bottom:20px;
+
+ box-shadow:0 6px 16px rgba(0,0,0,0.05);
+
+}
+
+.sectionLabel{
+
+ font-size:15px;
+
+ font-weight:600;
+
+ margin-bottom:10px;
+
+ color:#444;
+
+}
+
+.priceInput{
+
+ width:100%;
+
+ padding:14px;
+
+ border-radius:10px;
+
+ border:1px solid #ddd;
+
+ font-size:16px;
+
+ outline:none;
+
+}
+
+.priceInput:focus{
+
+ border-color:#7C3AED;
+
+}
+
+.priceBox{
+
+ margin-top:14px;
+
+ padding:14px;
+
+ border-radius:12px;
+
+ background:#F3EFFF;
+
+ display:flex;
+
+ justify-content:space-between;
+
+ align-items:center;
+
+ font-weight:600;
+
+ color:#5B21B6;
+
+}
+
+.priceHint{
+
+ margin-top:12px;
+
+ font-size:13px;
+
+ color:#777;
+
+}
+
+.calendarBox{
+
+ margin-top:10px;
+
+ padding:18px;
+
+ border-radius:14px;
+
+ border:1px solid #eee;
+
+ background:#fafafa;
+
+}
+
+.rulesInput{
+
+ width:100%;
+
+ min-height:120px;
+
+ border-radius:12px;
+
+ border:1px solid #ddd;
+
+ padding:12px;
+
+ resize:none;
+
+ font-size:14px;
+
+ outline:none;
+
+}
+
+.rulesInput:focus{
+
+ border-color:#7C3AED;
+
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

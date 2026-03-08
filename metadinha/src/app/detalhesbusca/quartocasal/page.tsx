@@ -1,6 +1,8 @@
 "use client";
 import styles from "./quartocasal.module.css";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Sidebar from "@/app/components/sidebar";
 import { useState } from "react";
 
 export default function QuartoCasal() {
@@ -73,7 +75,8 @@ export default function QuartoCasal() {
 
   return (
     <div className={styles.container}>
-     
+      {/* SIDEBAR */}
+      <Sidebar />
 
       <main className={styles.container}>
         <button onClick={() => router.back()} className={styles.backBtn}>
@@ -90,7 +93,7 @@ export default function QuartoCasal() {
         <section className={styles.layout}>
           <div className={styles.colEsq}>
             <div className={styles.imageWrapper}>
-              <img
+              <Image
                 src="/quartocasal.webp"
                 alt="Quarto casal"
                 width={900}

@@ -1,134 +1,92 @@
 "use client";
 
-import React, { useState } from "react";
 import styles from "./anunciar.module.css";
-import { useRouter } from "next/navigation";
+
+import { useAnunciarForm } from "./hooks/useAnunciarForm";
+
+import ProgressBar from "./components/ProgressBar";
+import PreviewCard from "./components/PreviewCard";
+
+import Step1 from "./components/steps/Step1";
+import Step2 from "./components/steps/Step2";
+import Step3 from "./components/steps/Step3";
+import Step4 from "./components/steps/Step4";
+import ReviewAnuncio from "./components/review/ReviewAnuncio";
+import SuccessAnuncio from "./components/success/SuccessAnuncio";
 
 export default function Anunciar() {
-  const router = useRouter();
+  const { step, formData, errorMessage, updateField, nextStep, prevStep, setStep } =
+    useAnunciarForm();
 
-  const [titulo, setTitulo] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [localizacao, setLocalizacao] = useState("");
-  const [endereco, setEndereco] = useState("");
-  const [erro, setErro] = useState("");
+  function renderStep() {
+    switch (step) {
+      case 1:
+        return <Step1 formData={formData} updateField={updateField} />;
 
-  function salvarParcial(dados: any) {
-    localStorage.setItem("anuncio_temp", JSON.stringify(dados));
-  }
+      case 2:
+        return <Step2 formData={formData} updateField={updateField} />;
 
-  function handleProximo() {
-    setErro("");
+      case 3:
+        return <Step3 formData={formData} updateField={updateField} />;
 
-    if (!titulo.trim() || !localizacao.trim()) {
-      setErro("Preencha os campos obrigatórios antes de continuar.");
-      return;
+      case 4:
+        return <Step4 formData={formData} updateField={updateField} />;
+
+      case 5:
+        return (
+          <ReviewAnuncio
+            formData={formData}
+            voltar={prevStep}
+            publicar={() => setStep(6)}
+          />
+        );
+
+      case 6:
+        return (
+          <SuccessAnuncio
+            resetForm={() => {
+              localStorage.removeItem("anuncio_draft");
+              window.location.reload();
+            }}
+          />
+        );
+
+      default:
+        return null;
     }
-
-    salvarParcial({
-      titulo,
-      descricao,
-      cidade: localizacao,
-      endereco,
-    });
-
-    router.push("/anunciar2");
   }
 
   return (
-    <main className={styles.container}>
-      {/* PROGRESSO */}
-      <div className={styles.progressWrapper}>
-        <div className={styles.progressBar}>
-          <div className={styles.progressFill} />
+    <div className={styles.container}>
+      <ProgressBar step={step} />
+
+      {errorMessage && <div className={styles.errorBox}>{errorMessage}</div>}
+
+      <div className={styles.content}>
+        <div className={styles.form}>{renderStep()}</div>
+
+        <div className={styles.preview}>
+          <PreviewCard formData={formData} />
         </div>
-        <div className={styles.stepNumbers}>
-          <span className={styles.activeStep}>1</span>
-          <span>2</span>
-          <span>3</span>
-        </div>
       </div>
 
-      {/* LAYOUT PRINCIPAL */}
-      <div className={styles.layout}>
-        {/* FORMULÁRIO */}
-        <section className={styles.formSection}>
-          <h1>Comece pelo básico</h1>
-          <p className={styles.subtitle}>
-            Conte um pouco sobre seu espaço.
-          </p>
+      <div className={styles.buttons}>
+        {step > 1 && (
+          <button className={styles.backButton} onClick={prevStep}>
+            Voltar
+          </button>
+        )}
 
-          {erro && <p className={styles.errorMsg}>{erro}</p>}
-
-          <div className={styles.inputGroup}>
-            <label>Título do anúncio *</label>
-            <input
-              type="text"
-              placeholder="Ex: Quarto aconchegante em Copacabana"
-              value={titulo}
-              onChange={(e) => setTitulo(e.target.value)}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <label>Descrição</label>
-            <textarea
-              placeholder="Descreva seu espaço..."
-              value={descricao}
-              onChange={(e) => setDescricao(e.target.value)}
-            />
-          </div>
-
-          <div className={styles.row}>
-            <div className={styles.inputGroup}>
-              <label>Localização *</label>
-              <input
-                type="text"
-                placeholder="Rio de Janeiro, RJ"
-                value={localizacao}
-                onChange={(e) => setLocalizacao(e.target.value)}
-              />
-            </div>
-
-            <div className={styles.inputGroup}>
-              <label>Endereço</label>
-              <input
-                type="text"
-                placeholder="Rua, número - Bairro"
-                value={endereco}
-                onChange={(e) => setEndereco(e.target.value)}
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* PREVIEW LATERAL */}
-        <aside className={styles.previewSection}>
-          <div className={styles.previewCard}>
-            <h3>Prévia do anúncio</h3>
-            <div className={styles.previewImage}></div>
-            <h4>{titulo || "Seu título aparecerá aqui"}</h4>
-            <p>{localizacao || "Localização"}</p>
-          </div>
-        </aside>
+        {step < 5 && (
+          <button
+            type="button"
+            className={styles.nextButton}
+            onClick={nextStep}
+          >
+            Próximo
+          </button>
+        )}
       </div>
-
-      {/* FOOTER FIXO */}
-      <div className={styles.footer}>
-        <button
-          className={styles.backBtn}
-          onClick={() => router.back()}
-        >
-          Voltar
-        </button>
-
-        <button
-          className={styles.nextBtn}
-          onClick={handleProximo}
-        >
-          Próximo
-        </button>
-      </div>
-    </main>
+    </div>
   );
 }

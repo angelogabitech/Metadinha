@@ -279,3 +279,34 @@
   line-height: 1.4;
 }
 
+/* ===== HERO TITLE DOMINO EFFECT ===== */
+
+.revealText {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: dominoUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes dominoUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-6px); /* leve overshoot */
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

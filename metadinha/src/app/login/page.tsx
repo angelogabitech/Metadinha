@@ -73,7 +73,7 @@ export default function Auth() {
     <main className={styles.container}>
       <div className={styles.card}>
         <img
-          src="/metadinha.png"
+          src="/metalogo.png"
           width={80}
           height={80}
           alt="Logo"

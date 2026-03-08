@@ -14,7 +14,7 @@ export function useReveal() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          observer.unobserve(element); // anima só uma vez
+          observer.unobserve(element);
         }
       },
       { threshold: 0.15 }

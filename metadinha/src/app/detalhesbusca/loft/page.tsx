@@ -1,7 +1,8 @@
 "use client";
 import styles from "./loft.module.css";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-
+import Sidebar from "@/app/components/sidebar";
 import { useEffect, useState } from "react";
 
 export default function Loft() {
@@ -77,7 +78,8 @@ export default function Loft() {
 
   return (
     <div className={styles.container}>
-      
+      <Sidebar />
+
       <main className={styles.mainContent}>
         <button onClick={() => router.back()} className={styles.backBtn}>
           ← Voltar
@@ -93,7 +95,7 @@ export default function Loft() {
         <section className={styles.layout}>
           <div className={styles.colEsq}>
             <div className={styles.imageWrapper}>
-              <img
+              <Image
                 src="/imovel.jpeg"
                 alt="Loft compartilhado"
                 width={900}
